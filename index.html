@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESPOCODEUR - Portfolio & Blog</title>
+    <meta name="description" content="RESPOCODEUR - Du code propre, des idées simples, des solutions efficaces. Portfolio de Wilfred Djikiakam, développeur web et logiciel.">
+    <meta name="keywords" content="développeur web, programmeur, HTML, CSS, JavaScript, C#, portfolio, blog tech">
+    <meta name="author" content="Wilfred Djikiakam">
+    
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <header class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand d-flex align-items-center" href="#home">
+                <div class="logo-placeholder me-3">
+                    <i class="fas fa-code text-primary"></i>
+                </div>
+                <div>
+                    <strong class="text-primary">RESPOCODEUR</strong>
+                    <div class="slogan">Du code propre, des idées simples</div>
+                </div>
+            </a>
+            
+            <div class="d-flex align-items-center">
+                <!-- Theme Toggle -->
+                <button id="theme-toggle" class="btn btn-outline-secondary btn-sm me-3">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Notification Bell -->
+                <button id="notification-bell" class="btn btn-outline-primary btn-sm me-3 position-relative">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </button>
+                
+                <!-- Mobile Menu Toggle -->
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+            </div>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="#home">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#about">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#portfolio">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#contact">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home" class="hero-section">
+        <div class="container">
+            <div class="row min-vh-100 align-items-center">
+                <div class="col-lg-8 mx-auto text-center">
+                    <div class="hero-content">
+                        <h1 class="hero-title mb-4">
+                            Bonjour, je suis <span class="text-primary">Wilfred Djikiakam</span>
+                        </h1>
+                        <h2 class="hero-subtitle mb-4">
+                            Développeur Web & Logiciel
+                        </h2>
+                        <p class="hero-description mb-5">
+                            Étudiant en génie logiciel passionné par le développement web et desktop. 
+                            Je crée des solutions efficaces avec un code propre et des idées simples.
+                        </p>
+                        <div class="hero-actions">
+                            <a href="#portfolio" class="btn btn-primary btn-lg me-3">
+                                Voir mes projets
+                            </a>
+                            <a href="https://wa.me/+237000000000" class="btn btn-outline-success btn-lg" target="_blank">
+                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="scroll-indicator">
+            <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title text-center mb-5">À propos de moi</h2>
+                </div>
+            </div>
+            
+            <div class="row align-items-center">
+                <div class="col-lg-6 mb-4 mb-lg-0">
+                    <div class="about-image">
+                        <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=500&h=500&fit=crop" 
+                             alt="Wilfred Djikiakam" class="img-fluid rounded shadow-lg">
+                    </div>
+                </div>
+                
+                <div class="col-lg-6">
+                    <div class="about-content">
+                        <h3 class="mb-4">Développeur passionné et polyvalent</h3>
+                        <p class="mb-4">
+                            Étudiant en génie logiciel, je me spécialise dans le développement web et desktop. 
+                            Ma passion pour la programmation m'a conduit à maîtriser plusieurs technologies 
+                            et à développer une approche méthodique du développement logiciel.
+                        </p>
+                        
+                        <div class="skills-section mb-4">
+                            <h4 class="mb-3">Compétences Techniques</h4>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <i class="fab fa-html5 text-danger"></i>
+                                        <span>HTML5</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-css3-alt text-info"></i>
+                                        <span>CSS3</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-js text-warning"></i>
+                                        <span>JavaScript</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-bootstrap text-purple"></i>
+                                        <span>Bootstrap</span>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="skill-item">
+                                        <i class="fas fa-code text-primary"></i>
+                                        <span>C#</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fas fa-database text-success"></i>
+                                        <span>MySQL</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fas fa-desktop text-secondary"></i>
+                                        <span>WinForms</span>
+                                    </div>
+                                    <div class="skill-item">
+                                        <i class="fab fa-git-alt text-danger"></i>
+                                        <span>Git</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="soft-skills">
+                            <h4 class="mb-3">Soft Skills</h4>
+                            <div class="d-flex flex-wrap gap-2">
+                                <span class="badge bg-light text-dark">Disponibilité 24/24</span>
+                                <span class="badge bg-light text-dark">Autonomie</span>
+                                <span class="badge bg-light text-dark">Mobilité</span>
+                                <span class="badge bg-light text-dark">Travail d'équipe</span>
+                                <span class="badge bg-light text-dark">Problem solving</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title text-center mb-5">Portfolio</h2>
+                    <p class="text-center mb-5">Découvrez quelques-uns de mes projets récents</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Project 1: MySCC -->
+                <div class="col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/270404/pexels-photo-270404.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" 
+                                 alt="MySCC" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4>MySCC</h4>
+                            <p class="text-muted mb-3">Application Windows</p>
+                            <p>Application de gestion développée en C# avec WinForms. Interface intuitive pour la gestion des données avec base de données MySQL intégrée.</p>
+                            <div class="project-tech mb-3">
+                                <span class="tech-tag">C#</span>
+                                <span class="tech-tag">WinForms</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-sm">Voir détails</button>
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 2: MyStudent -->
+                <div class="col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" 
+                                 alt="MyStudent" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4>MyStudent</h4>
+                            <p class="text-muted mb-3">Application Web</p>
+                            <p>Plateforme web pour la gestion étudiante. Interface moderne et responsive développée avec HTML, CSS, JavaScript et Bootstrap.</p>
+                            <div class="project-tech mb-3">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">Bootstrap</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-sm">Voir détails</button>
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 3: DigitalMarket -->
+                <div class="col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" 
+                                 alt="DigitalMarket" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4>DigitalMarket</h4>
+                            <p class="text-muted mb-3">E-commerce Web</p>
+                            <p>Plateforme e-commerce complète avec gestion des produits, panier d'achat et système de paiement. Design moderne et fonctionnalités avancées.</p>
+                            <div class="project-tech mb-3">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-sm">Voir détails</button>
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Project 4: PainPilote -->
+                <div class="col-lg-6 mb-4">
+                    <div class="project-card h-100">
+                        <div class="project-image">
+                            <img src="https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" 
+                                 alt="PainPilote" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4>PainPilote</h4>
+                            <p class="text-muted mb-3">Gestion Boulangerie</p>
+                            <p>Application web complète pour la gestion d'une boulangerie. Gestion des stocks, commandes, clients et reporting avancé.</p>
+                            <div class="project-tech mb-3">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
+                                <span class="tech-tag">PHP</span>
+                                <span class="tech-tag">MySQL</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-sm">Voir détails</button>
+                                <button class="btn btn-outline-secondary btn-sm">
+                                    <i class="fab fa-github"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Section -->
+    <section id="blog" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title text-center mb-5">Blog</h2>
+                    <p class="text-center mb-5">Mes derniers articles et tutoriels</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Article 1 -->
+                <div class="col-lg-4 mb-4">
+                    <div class="blog-card h-100">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
+                                 alt="Article" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta mb-2">
+                                <span class="badge bg-primary">JavaScript</span>
+                                <small class="text-muted">15 Jan 2024</small>
+                            </div>
+                            <h5>Les bonnes pratiques en JavaScript moderne</h5>
+                            <p class="text-muted">Découvrez les techniques essentielles pour écrire du JavaScript propre et maintenable en 2024...</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 2 -->
+                <div class="col-lg-4 mb-4">
+                    <div class="blog-card h-100">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
+                                 alt="Article" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta mb-2">
+                                <span class="badge bg-info">CSS</span>
+                                <small class="text-muted">12 Jan 2024</small>
+                            </div>
+                            <h5>CSS Grid vs Flexbox : quand utiliser quoi ?</h5>
+                            <p class="text-muted">Guide complet pour choisir entre CSS Grid et Flexbox selon vos besoins de mise en page...</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- Article 3 -->
+                <div class="col-lg-4 mb-4">
+                    <div class="blog-card h-100">
+                        <div class="blog-image">
+                            <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
+                                 alt="Article" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta mb-2">
+                                <span class="badge bg-success">C#</span>
+                                <small class="text-muted">8 Jan 2024</small>
+                            </div>
+                            <h5>Débuter avec C# et WinForms</h5>
+                            <p class="text-muted">Tutorial pour créer votre première application desktop avec C# et WinForms...</p>
+                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-5 bg-light">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2 class="section-title text-center mb-5">Contact</h2>
+                    <p class="text-center mb-5">Parlons de votre prochain projet</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="contact-form-container">
+                        <form id="contact-form" class="contact-form">
+                            <div class="row">
+                                <div class="col-md-6 mb-3">
+                                    <label for="name" class="form-label">Nom complet</label>
+                                    <input type="text" class="form-control" id="name" required>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label for="email" class="form-label">Email</label>
+                                    <input type="email" class="form-control" id="email" required>
+                                </div>
+                            </div>
+                            <div class="mb-3">
+                                <label for="subject" class="form-label">Sujet</label>
+                                <input type="text" class="form-control" id="subject" required>
+                            </div>
+                            <div class="mb-4">
+                                <label for="message" class="form-label">Message</label>
+                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                            </div>
+                            <div class="text-center">
+                                <button type="submit" class="btn btn-primary btn-lg">
+                                    <i class="fas fa-paper-plane me-2"></i>Envoyer le message
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <div class="contact-info text-center">
+                        <div class="row">
+                            <div class="col-lg-6 mx-auto">
+                                <h4 class="mb-4">Contactez-moi directement</h4>
+                                <div class="contact-actions mb-4">
+                                    <a href="https://wa.me/+237000000000" class="btn btn-success btn-lg me-3 mb-2" target="_blank">
+                                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                                    </a>
+                                    <a href="mailto:wilfreddjikiakam@gmail.com" class="btn btn-outline-primary btn-lg mb-2">
+                                        <i class="fas fa-envelope me-2"></i>Email
+                                    </a>
+                                </div>
+                                
+                                <div class="social-links">
+                                    <h5 class="mb-3">Retrouvez-moi sur</h5>
+                                    <div class="d-flex justify-content-center gap-3">
+                                        <a href="https://facebook.com/respocodeur" class="social-link" target="_blank">
+                                            <i class="fab fa-facebook-f"></i>
+                                        </a>
+                                        <a href="https://instagram.com/wilfred.djikiakam" class="social-link" target="_blank">
+                                            <i class="fab fa-instagram"></i>
+                                        </a>
+                                        <a href="https://twitter.com/wilfred.djikiakam" class="social-link" target="_blank">
+                                            <i class="fab fa-twitter"></i>
+                                        </a>
+                                        <a href="https://linkedin.com/in/wilfred.djikiakam" class="social-link" target="_blank">
+                                            <i class="fab fa-linkedin-in"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-dark text-white py-4">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <div class="d-flex align-items-center">
+                        <div class="logo-placeholder me-3">
+                            <i class="fas fa-code text-primary"></i>
+                        </div>
+                        <div>
+                            <strong>RESPOCODEUR</strong>
+                            <div class="text-muted small">Du code propre, des idées simples</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 text-md-end mt-3 mt-md-0">
+                    <p class="mb-0">&copy; <span id="current-year"></span> RESPOCODEUR - Tous droits réservés</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Custom JS -->
+    <script src="script.js"></script>
+</body>
+</html>
