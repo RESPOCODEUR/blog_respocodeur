@@ -1,56 +1,78 @@
-// DOM Elements
+// Éléments DOM
 const themeToggle = document.getElementById('theme-toggle');
 const notificationBell = document.getElementById('notification-bell');
 const notificationBadge = document.querySelector('.notification-badge');
 const contactForm = document.getElementById('contact-form');
 const currentYearSpan = document.getElementById('current-year');
 const navLinks = document.querySelectorAll('.nav-link');
+const notificationBanner = document.getElementById('notification-banner');
+const allowNotificationsBtn = document.getElementById('allow-notifications');
+const denyNotificationsBtn = document.getElementById('deny-notifications');
 
-// Initialize the application
+// Variables globales
+let notificationsEnabled = false;
+let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || Date.now();
+
+// Initialisation de l'application
 document.addEventListener('DOMContentLoaded', function() {
+    console.log('🚀 RESPOCODEUR - Initialisation...');
     initializeApp();
 });
 
-// Initialize all features
+// Fonction principale d'initialisation
 function initializeApp() {
     setCurrentYear();
     initializeTheme();
     initializeNavigation();
-    initializeNotifications();
+    initializeNotificationSystem();
     initializeContactForm();
     initializeScrollAnimations();
+    initializeModals();
+    initializePerformanceMonitoring();
+    
+    console.log('✅ Application RESPOCODEUR initialisée avec succès !');
 }
 
-// Set current year in footer
+// Définir l'année courante
 function setCurrentYear() {
     if (currentYearSpan) {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 }
 
-// Theme Management
+// GESTION DU THÈME
 function initializeTheme() {
-    // Load saved theme or default to light
+    // Charger le thème sauvegardé ou utiliser le thème clair par défaut
     const savedTheme = localStorage.getItem('theme') || 'light';
     setTheme(savedTheme);
     
-    // Theme toggle event listener
+    // Écouteur d'événement pour le bouton de basculement du thème
     if (themeToggle) {
         themeToggle.addEventListener('click', toggleTheme);
     }
 }
 
 function setTheme(theme) {
+    // Ajouter la classe de transition pour un changement fluide
+    document.body.classList.add('theme-transition');
+    
     document.documentElement.setAttribute('data-theme', theme);
     localStorage.setItem('theme', theme);
     
-    // Update theme toggle icon
+    // Mettre à jour l'icône du bouton de thème
     if (themeToggle) {
         const icon = themeToggle.querySelector('i');
         if (icon) {
             icon.className = theme === 'dark' ? 'fas fa-sun' : 'fas fa-moon';
         }
     }
+    
+    // Retirer la classe de transition après l'animation
+    setTimeout(() => {
+        document.body.classList.remove('theme-transition');
+    }, 300);
+    
+    console.log(`🎨 Thème changé vers : ${theme}`);
 }
 
 function toggleTheme() {
@@ -58,24 +80,24 @@ function toggleTheme() {
     const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
     setTheme(newTheme);
     
-    // Add transition effect
-    document.body.style.transition = 'background-color 0.3s ease, color 0.3s ease';
+    // Effet de feedback visuel
+    themeToggle.style.transform = 'scale(0.95)';
     setTimeout(() => {
-        document.body.style.transition = '';
-    }, 300);
+        themeToggle.style.transform = '';
+    }, 150);
 }
 
-// Navigation Management
+// GESTION DE LA NAVIGATION
 function initializeNavigation() {
-    // Smooth scrolling for navigation links
+    // Défilement fluide pour les liens de navigation
     navLinks.forEach(link => {
         link.addEventListener('click', handleNavClick);
     });
     
-    // Update active nav link on scroll
-    window.addEventListener('scroll', updateActiveNavLink);
+    // Mettre à jour le lien de navigation actif lors du défilement
+    window.addEventListener('scroll', debounce(updateActiveNavLink, 10));
     
-    // Close mobile menu when clicking on a link
+    // Fermer le menu mobile lors du clic sur un lien
     navLinks.forEach(link => {
         link.addEventListener('click', closeMobileMenu);
     });
@@ -88,18 +110,24 @@ function handleNavClick(e) {
     if (targetId && targetId.startsWith('#')) {
         const targetElement = document.querySelector(targetId);
         if (targetElement) {
-            const offsetTop = targetElement.offsetTop - 80; // Account for fixed header
+            const offsetTop = targetElement.offsetTop - 80; // Compenser la hauteur de l'en-tête fixe
             window.scrollTo({
                 top: offsetTop,
                 behavior: 'smooth'
             });
+            
+            // Ajouter un effet de feedback
+            e.target.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                e.target.style.transform = '';
+            }, 150);
         }
     }
 }
 
 function updateActiveNavLink() {
     const sections = document.querySelectorAll('section[id]');
-    const scrollPosition = window.scrollY + 100; // Offset for header
+    const scrollPosition = window.scrollY + 100; // Décalage pour l'en-tête
     
     sections.forEach(section => {
         const sectionTop = section.offsetTop;
@@ -109,9 +137,9 @@ function updateActiveNavLink() {
         
         if (correspondingLink) {
             if (scrollPosition >= sectionTop && scrollPosition < sectionTop + sectionHeight) {
-                // Remove active class from all links
+                // Retirer la classe active de tous les liens
                 navLinks.forEach(link => link.classList.remove('active'));
-                // Add active class to current section link
+                // Ajouter la classe active au lien de la section courante
                 correspondingLink.classList.add('active');
             }
         }
@@ -127,65 +155,180 @@ function closeMobileMenu() {
     }
 }
 
-// Notifications Management
-function initializeNotifications() {
-    // Show notification badge on page load (simulate new content)
-    setTimeout(() => {
-        showNotification();
-    }, 2000);
+// SYSTÈME DE NOTIFICATIONS AVANCÉ
+function initializeNotificationSystem() {
+    // Vérifier si les notifications ont été configurées
+    const notificationPermission = localStorage.getItem('notificationPermission');
     
-    // Notification bell click handler
+    if (!notificationPermission) {
+        // Afficher la bannière de permission après 3 secondes
+        setTimeout(() => {
+            showNotificationBanner();
+        }, 3000);
+    } else if (notificationPermission === 'granted') {
+        notificationsEnabled = true;
+        // Vérifier les mises à jour périodiquement
+        checkForUpdates();
+        setInterval(checkForUpdates, 300000); // Vérifier toutes les 5 minutes
+    }
+    
+    // Écouteurs d'événements pour les boutons de permission
+    if (allowNotificationsBtn) {
+        allowNotificationsBtn.addEventListener('click', handleAllowNotifications);
+    }
+    
+    if (denyNotificationsBtn) {
+        denyNotificationsBtn.addEventListener('click', handleDenyNotifications);
+    }
+    
+    // Écouteur pour la cloche de notification
     if (notificationBell) {
         notificationBell.addEventListener('click', handleNotificationClick);
     }
+    
+    // Simuler une notification après le chargement
+    setTimeout(() => {
+        showNotificationBadge();
+    }, 5000);
 }
 
-function showNotification() {
-    if (notificationBadge) {
-        notificationBadge.classList.add('active');
+function showNotificationBanner() {
+    if (notificationBanner) {
+        notificationBanner.classList.add('show');
+        console.log('📢 Bannière de notification affichée');
     }
 }
 
-function hideNotification() {
+function hideNotificationBanner() {
+    if (notificationBanner) {
+        notificationBanner.classList.remove('show');
+        setTimeout(() => {
+            notificationBanner.style.display = 'none';
+        }, 400);
+    }
+}
+
+function handleAllowNotifications() {
+    localStorage.setItem('notificationPermission', 'granted');
+    notificationsEnabled = true;
+    hideNotificationBanner();
+    
+    showCustomAlert(
+        '🔔 Notifications activées !',
+        'Vous recevrez maintenant des notifications pour les nouvelles mises à jour du site RESPOCODEUR.',
+        'success'
+    );
+    
+    // Commencer à vérifier les mises à jour
+    checkForUpdates();
+    setInterval(checkForUpdates, 300000); // Toutes les 5 minutes
+    
+    console.log('✅ Notifications autorisées par l\'utilisateur');
+}
+
+function handleDenyNotifications() {
+    localStorage.setItem('notificationPermission', 'denied');
+    hideNotificationBanner();
+    
+    showCustomAlert(
+        '📵 Notifications désactivées',
+        'Vous pouvez réactiver les notifications à tout moment en cliquant sur la cloche.',
+        'info'
+    );
+    
+    console.log('❌ Notifications refusées par l\'utilisateur');
+}
+
+function checkForUpdates() {
+    if (!notificationsEnabled) return;
+    
+    // Simuler une vérification de mise à jour
+    const now = Date.now();
+    const timeSinceLastCheck = now - parseInt(lastUpdateCheck);
+    
+    // Si plus de 24 heures depuis la dernière vérification
+    if (timeSinceLastCheck > 86400000) { // 24 heures en millisecondes
+        // Simuler une nouvelle mise à jour (30% de chance)
+        if (Math.random() < 0.3) {
+            showNotificationBadge();
+            localStorage.setItem('lastUpdateCheck', now.toString());
+            
+            // Notification native du navigateur si supportée
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification('RESPOCODEUR - Nouvelle mise à jour !', {
+                    body: 'De nouveaux contenus sont disponibles sur le portfolio.',
+                    icon: '/favicon.ico',
+                    tag: 'respocodeur-update'
+                });
+            }
+            
+            console.log('🔔 Nouvelle mise à jour détectée !');
+        }
+    }
+}
+
+function showNotificationBadge() {
+    if (notificationBadge) {
+        notificationBadge.classList.add('active');
+        console.log('🔴 Badge de notification activé');
+    }
+}
+
+function hideNotificationBadge() {
     if (notificationBadge) {
         notificationBadge.classList.remove('active');
+        console.log('⚪ Badge de notification masqué');
     }
 }
 
 function handleNotificationClick() {
-    // Hide the notification badge
-    hideNotification();
+    // Masquer le badge de notification
+    hideNotificationBadge();
     
-    // Show notification alert
+    // Afficher l'alerte de notification
     showCustomAlert(
-        'Nouvelles actualités !',
-        'Découvrez mes derniers articles sur le blog et mes nouveaux projets portfolio.',
+        '🎉 Nouvelles mises à jour disponibles !',
+        `Découvrez les dernières améliorations de RESPOCODEUR :
+        
+        ✨ 4 nouveaux projets détaillés avec modals interactifs
+        📝 6 articles de blog techniques complets
+        🎨 Interface mobile optimisée comme une app
+        🔔 Système de notifications en temps réel
+        🌙 Mode sombre amélioré avec transitions fluides
+        
+        Explorez les boutons "Voir plus" et "Lire la suite" pour découvrir tous les détails !`,
         'info'
     );
     
-    // Scroll to blog section
-    const blogSection = document.querySelector('#blog');
-    if (blogSection) {
-        const offsetTop = blogSection.offsetTop - 80;
+    // Défiler vers la section portfolio
+    const portfolioSection = document.querySelector('#portfolio');
+    if (portfolioSection) {
+        const offsetTop = portfolioSection.offsetTop - 80;
         window.scrollTo({
             top: offsetTop,
             behavior: 'smooth'
         });
     }
+    
+    console.log('🔔 Notification cliquée - Redirection vers portfolio');
 }
 
-// Custom Alert System
+// SYSTÈME D'ALERTES PERSONNALISÉES
 function showCustomAlert(title, message, type = 'info') {
-    // Create alert element
+    // Créer l'élément d'alerte
     const alert = document.createElement('div');
     alert.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
     alert.style.cssText = `
         top: 100px;
         right: 20px;
         z-index: 9999;
-        min-width: 300px;
-        max-width: 400px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+        min-width: 350px;
+        max-width: 500px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+        backdrop-filter: blur(10px);
+        border-radius: 16px;
+        border: none;
+        animation: slideInRight 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     `;
     
     alert.innerHTML = `
@@ -194,26 +337,28 @@ function showCustomAlert(title, message, type = 'info') {
                 <i class="fas fa-${getAlertIcon(type)} fs-4"></i>
             </div>
             <div class="flex-grow-1">
-                <h6 class="alert-heading mb-1">${title}</h6>
-                <p class="mb-0 small">${message}</p>
+                <h6 class="alert-heading mb-2 fw-bold">${title}</h6>
+                <div class="mb-0" style="white-space: pre-line; font-size: 0.9rem;">${message}</div>
             </div>
-            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            <button type="button" class="btn-close" onclick="this.parentElement.parentElement.remove()"></button>
         </div>
     `;
     
     document.body.appendChild(alert);
     
-    // Auto remove after 5 seconds
+    // Retrait automatique après 8 secondes
     setTimeout(() => {
         if (alert.parentNode) {
-            alert.classList.remove('show');
+            alert.style.animation = 'slideOutRight 0.4s cubic-bezier(0.4, 0, 0.2, 1)';
             setTimeout(() => {
                 if (alert.parentNode) {
                     alert.parentNode.removeChild(alert);
                 }
-            }, 150);
+            }, 400);
         }
-    }, 5000);
+    }, 8000);
+    
+    console.log(`📢 Alerte affichée : ${type} - ${title}`);
 }
 
 function getAlertIcon(type) {
@@ -226,12 +371,12 @@ function getAlertIcon(type) {
     return icons[type] || 'info-circle';
 }
 
-// Contact Form Management
+// GESTION DU FORMULAIRE DE CONTACT
 function initializeContactForm() {
     if (contactForm) {
         contactForm.addEventListener('submit', handleContactFormSubmit);
         
-        // Add real-time validation
+        // Validation en temps réel
         const inputs = contactForm.querySelectorAll('input, textarea');
         inputs.forEach(input => {
             input.addEventListener('blur', validateField);
@@ -243,7 +388,7 @@ function initializeContactForm() {
 function handleContactFormSubmit(e) {
     e.preventDefault();
     
-    // Get form data
+    // Récupérer les données du formulaire
     const formData = new FormData(contactForm);
     const data = {
         name: formData.get('name') || document.getElementById('name').value,
@@ -252,60 +397,67 @@ function handleContactFormSubmit(e) {
         message: formData.get('message') || document.getElementById('message').value
     };
     
-    // Validate form
+    // Valider le formulaire
     if (!validateContactForm(data)) {
         return;
     }
     
-    // Show loading state
+    // Afficher l'état de chargement
     const submitButton = contactForm.querySelector('button[type="submit"]');
     const originalText = submitButton.innerHTML;
     submitButton.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Envoi en cours...';
     submitButton.disabled = true;
     
-    // Simulate form submission (replace with actual implementation)
+    // Simuler l'envoi du formulaire (remplacer par une implémentation réelle)
     setTimeout(() => {
-        // Reset button
+        // Réinitialiser le bouton
         submitButton.innerHTML = originalText;
         submitButton.disabled = false;
         
-        // Show success message
+        // Afficher le message de succès
         showCustomAlert(
-            'Message envoyé !',
-            `Merci ${data.name}, votre message a été envoyé avec succès. Je vous répondrai dans les plus brefs délais.`,
+            '✅ Message envoyé avec succès !',
+            `Merci ${data.name} pour votre message concernant "${data.subject}".
+            
+Je vous répondrai dans les plus brefs délais à l'adresse : ${data.email}
+            
+Votre message :
+"${data.message.substring(0, 100)}${data.message.length > 100 ? '...' : ''}"`,
             'success'
         );
         
-        // Reset form
+        // Réinitialiser le formulaire
         contactForm.reset();
         clearAllFieldErrors();
         
-    }, 2000);
+        console.log('📧 Formulaire de contact soumis avec succès');
+        
+    }, 2500);
 }
 
 function validateContactForm(data) {
     let isValid = true;
     
-    // Validate name
+    // Valider le nom
     if (!data.name || data.name.trim().length < 2) {
         showFieldError('name', 'Le nom doit contenir au moins 2 caractères');
         isValid = false;
     }
     
-    // Validate email
+    // Valider l'email
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!data.email || !emailRegex.test(data.email)) {
         showFieldError('email', 'Veuillez entrer une adresse email valide');
         isValid = false;
     }
     
-    // Validate subject
+    // Valider le sujet
     if (!data.subject || data.subject.trim().length < 3) {
         showFieldError('subject', 'Le sujet doit contenir au moins 3 caractères');
         isValid = false;
     }
     
-    // Validate message
+    // Valider le message
     if (!data.message || data.message.trim().length < 10) {
         showFieldError('message', 'Le message doit contenir au moins 10 caractères');
         isValid = false;
@@ -322,7 +474,7 @@ function validateField(e) {
     
     switch (field.id) {
         case 'name':
-            if (value.length < 2) {
+            if (value.length > 0 && value.length < 2) {
                 showFieldError('name', 'Le nom doit contenir au moins 2 caractères');
             }
             break;
@@ -333,12 +485,12 @@ function validateField(e) {
             }
             break;
         case 'subject':
-            if (value.length < 3) {
+            if (value.length > 0 && value.length < 3) {
                 showFieldError('subject', 'Le sujet doit contenir au moins 3 caractères');
             }
             break;
         case 'message':
-            if (value.length < 10) {
+            if (value.length > 0 && value.length < 10) {
                 showFieldError('message', 'Le message doit contenir au moins 10 caractères');
             }
             break;
@@ -351,13 +503,13 @@ function showFieldError(fieldId, message) {
     
     field.classList.add('is-invalid');
     
-    // Remove existing error message
+    // Supprimer le message d'erreur existant
     const existingError = field.parentNode.querySelector('.invalid-feedback');
     if (existingError) {
         existingError.remove();
     }
     
-    // Add new error message
+    // Ajouter le nouveau message d'erreur
     const errorDiv = document.createElement('div');
     errorDiv.className = 'invalid-feedback';
     errorDiv.textContent = message;
@@ -380,9 +532,9 @@ function clearAllFieldErrors() {
     fields.forEach(fieldId => clearFieldError(fieldId));
 }
 
-// Scroll Animations
+// ANIMATIONS DE DÉFILEMENT
 function initializeScrollAnimations() {
-    // Intersection Observer for fade-in animations
+    // Intersection Observer pour les animations de fondu
     const observerOptions = {
         threshold: 0.1,
         rootMargin: '0px 0px -50px 0px'
@@ -392,19 +544,159 @@ function initializeScrollAnimations() {
         entries.forEach(entry => {
             if (entry.isIntersecting) {
                 entry.target.style.animationPlayState = 'running';
+                console.log(`🎬 Animation déclenchée pour : ${entry.target.className}`);
             }
         });
     }, observerOptions);
     
-    // Observe animated elements
-    const animatedElements = document.querySelectorAll('.project-card, .blog-card');
+    // Observer les éléments animés
+    const animatedElements = document.querySelectorAll('.project-card, .blog-card, .experience-item');
     animatedElements.forEach(el => {
         el.style.animationPlayState = 'paused';
         observer.observe(el);
     });
 }
 
-// Utility Functions
+// FONCTIONNALITÉS MODALES AMÉLIORÉES
+function initializeModals() {
+    // Défilement vers le haut lors de l'ouverture d'une modale
+    const modals = document.querySelectorAll('.modal');
+    modals.forEach(modal => {
+        modal.addEventListener('shown.bs.modal', function() {
+            // Faire défiler le contenu de la modale vers le haut
+            const modalBody = this.querySelector('.modal-body');
+            if (modalBody) {
+                modalBody.scrollTop = 0;
+            }
+            console.log(`📖 Modal ouverte : ${this.id}`);
+        });
+        
+        modal.addEventListener('hidden.bs.modal', function() {
+            console.log(`📖 Modal fermée : ${this.id}`);
+        });
+    });
+    
+    // Navigation au clavier pour les modales
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            // Fermer toute modale ouverte
+            const openModal = document.querySelector('.modal.show');
+            if (openModal) {
+                const modalInstance = bootstrap.Modal.getInstance(openModal);
+                if (modalInstance) {
+                    modalInstance.hide();
+                }
+            }
+        }
+    });
+}
+
+// SURVEILLANCE DES PERFORMANCES
+function initializePerformanceMonitoring() {
+    // Surveiller les métriques de performance
+    window.addEventListener('load', () => {
+        const loadTime = performance.now();
+        console.log(`⚡ Page chargée en ${Math.round(loadTime)}ms`);
+        
+        // Enregistrer les métriques de navigation si disponibles
+        if (performance.getEntriesByType) {
+            const navTiming = performance.getEntriesByType('navigation')[0];
+            if (navTiming) {
+                console.log(`📊 DOM chargé en ${Math.round(navTiming.domContentLoadedEventEnd - navTiming.domContentLoadedEventStart)}ms`);
+            }
+        }
+        
+        // Initialiser le lazy loading pour les images si nécessaire
+        if ('IntersectionObserver' in window) {
+            const imageObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        if (img.dataset.src) {
+                            img.src = img.dataset.src;
+                            img.removeAttribute('data-src');
+                            imageObserver.unobserve(img);
+                            console.log(`🖼️ Image chargée : ${img.alt}`);
+                        }
+                    }
+                });
+            });
+            
+            // Observer les images avec l'attribut data-src
+            document.querySelectorAll('img[data-src]').forEach(img => {
+                imageObserver.observe(img);
+            });
+        }
+    });
+}
+
+// GESTION DES CHANGEMENTS DE VISIBILITÉ DE LA PAGE
+document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+        // La page est devenue visible, vérifier les nouvelles notifications
+        if (notificationsEnabled) {
+            setTimeout(() => {
+                checkForUpdates();
+                
+                // Afficher un message de bienvenue si l'utilisateur revient après 5 minutes
+                const lastVisit = localStorage.getItem('lastVisit');
+                const now = Date.now();
+                if (lastVisit && (now - parseInt(lastVisit)) > 300000) { // 5 minutes
+                    setTimeout(() => {
+                        showCustomAlert(
+                            '👋 Bon retour sur RESPOCODEUR !',
+                            'N\'hésitez pas à explorer les nouveaux contenus détaillés disponibles dans les modals des projets et articles de blog.',
+                            'info'
+                        );
+                    }, 2000);
+                }
+            }, 1000);
+        }
+    } else {
+        // Stocker l'heure de la dernière visite
+        localStorage.setItem('lastVisit', Date.now().toString());
+    }
+});
+
+// NAVIGATION CLAVIER AMÉLIORÉE
+document.addEventListener('keydown', (e) => {
+    // Touche ESC pour fermer le menu mobile et les modales
+    if (e.key === 'Escape') {
+        closeMobileMenu();
+    }
+    
+    // Touche Entrée sur la cloche de notification
+    if (e.key === 'Enter' && e.target === notificationBell) {
+        handleNotificationClick();
+    }
+    
+    // Ctrl/Cmd + K pour focus sur la recherche (fonctionnalité future)
+    if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
+        e.preventDefault();
+        console.log('🔍 Raccourci de recherche détecté (fonctionnalité future)');
+    }
+});
+
+// GESTION D'ERREURS
+window.addEventListener('error', (e) => {
+    console.error('❌ Erreur JavaScript :', e.error);
+    // Afficher un message d'erreur convivial en production
+    if (window.location.hostname !== 'localhost') {
+        showCustomAlert(
+            '⚠️ Une erreur s\'est produite',
+            'Une erreur technique temporaire est survenue. Veuillez rafraîchir la page si le problème persiste.',
+            'warning'
+        );
+    }
+});
+
+// Gestion des rejets de promesses non gérés
+window.addEventListener('unhandledrejection', (e) => {
+    console.error('❌ Rejet de promesse non géré :', e.reason);
+    e.preventDefault(); // Empêcher le comportement par défaut du navigateur
+});
+
+// FONCTIONS UTILITAIRES
 function debounce(func, wait) {
     let timeout;
     return function executedFunction(...args) {
@@ -417,48 +709,65 @@ function debounce(func, wait) {
     };
 }
 
-// Add debounced scroll listener for performance
-const debouncedScrollHandler = debounce(updateActiveNavLink, 10);
-window.addEventListener('scroll', debouncedScrollHandler);
-
-// Handle page visibility changes
-document.addEventListener('visibilitychange', () => {
-    if (!document.hidden) {
-        // Page became visible, check for new notifications
-        setTimeout(showNotification, 1000);
-    }
-});
-
-// Keyboard navigation support
-document.addEventListener('keydown', (e) => {
-    // ESC key to close mobile menu
-    if (e.key === 'Escape') {
-        closeMobileMenu();
+// Ajouter les styles CSS pour les animations personnalisées
+const customAnimationCSS = `
+    @keyframes slideInRight {
+        from {
+            transform: translateX(100%);
+            opacity: 0;
+        }
+        to {
+            transform: translateX(0);
+            opacity: 1;
+        }
     }
     
-    // Enter key on notification bell
-    if (e.key === 'Enter' && e.target === notificationBell) {
-        handleNotificationClick();
+    @keyframes slideOutRight {
+        from {
+            transform: translateX(0);
+            opacity: 1;
+        }
+        to {
+            transform: translateX(100%);
+            opacity: 0;
+        }
     }
-});
+`;
 
-// Error handling
-window.addEventListener('error', (e) => {
-    console.error('JavaScript Error:', e.error);
-});
+// Injecter les styles CSS personnalisés
+const styleSheet = document.createElement('style');
+styleSheet.textContent = customAnimationCSS;
+document.head.appendChild(styleSheet);
 
-// Performance monitoring
-window.addEventListener('load', () => {
-    // Log page load time
-    const loadTime = performance.now();
-    console.log(`Page loaded in ${Math.round(loadTime)}ms`);
-});
-
-// Export functions for testing (if needed)
+// Exporter les fonctions pour les tests (si nécessaire)
 if (typeof module !== 'undefined' && module.exports) {
     module.exports = {
         setTheme,
         validateContactForm,
-        showCustomAlert
+        showCustomAlert,
+        handleNotificationClick,
+        checkForUpdates
     };
 }
+
+// Message de bienvenue dans la console
+console.log(`
+🚀 RESPOCODEUR - Portfolio & Blog
+👨‍💻 Développé par Wilfred Djikiakam
+📧 Contact: wilfreddjikiakam@gmail.com
+🌟 "Le code est ma toile, l'innovation mon pinceau"
+
+✨ Fonctionnalités actives :
+- 🎨 Thème clair/sombre avec transitions fluides
+- 🔔 Système de notifications en temps réel
+- 📱 Design mobile-first comme une app
+- 🖱️ Modals interactifs pour projets et blog
+- ⚡ Animations et micro-interactions
+- 🎯 Navigation fluide par scroll
+- 📊 Monitoring des performances
+- ♿ Accessibilité améliorée
+
+Devise: Adaptation - Motivation - Engagement
+`);
+
+console.log('🎉 Bienvenue sur RESPOCODEUR ! Explorez les projets et articles avec les boutons "Voir plus" et "Lire la suite".');
