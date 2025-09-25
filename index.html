@@ -4,55 +4,73 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>RESPOCODEUR - Portfolio & Blog</title>
-    <meta name="description" content="RESPOCODEUR - Du code propre, des idées simples, des solutions efficaces. Portfolio de Wilfred Djikiakam, développeur web et logiciel.">
-    <meta name="keywords" content="développeur web, programmeur, HTML, CSS, JavaScript, C#, portfolio, blog tech">
-    <meta name="author" content="Wilfred Djikiakam">
+    <meta name="description" content="Wilfred Djikiakam - Développeur passionné et étudiant en génie logiciel. Du code propre, des idées simples, des solutions efficaces.">
     
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <!-- Custom CSS -->
+    <!-- CSS personnalisé -->
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <!-- Header -->
-    <header class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
+    <!-- Bannière de permission de notifications -->
+    <div id="notification-banner" class="notification-permission-banner">
+        <div class="container">
+            <div class="d-flex align-items-center justify-content-between flex-wrap">
+                <div class="d-flex align-items-center">
+                    <i class="fas fa-bell me-2"></i>
+                    <span>Restez informé des dernières mises à jour de RESPOCODEUR</span>
+                </div>
+                <div class="mt-2 mt-md-0">
+                    <button id="allow-notifications" class="btn btn-light btn-sm me-2">
+                        <i class="fas fa-check me-1"></i>Autoriser
+                    </button>
+                    <button id="deny-notifications" class="btn btn-outline-light btn-sm">
+                        <i class="fas fa-times me-1"></i>Plus tard
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
         <div class="container">
             <a class="navbar-brand d-flex align-items-center" href="#home">
                 <div class="logo-placeholder me-3">
-                    <i class="fas fa-code text-primary"></i>
+                    <i class="fas fa-code"></i>
                 </div>
                 <div>
-                    <strong class="text-primary">RESPOCODEUR</strong>
-                    <div class="slogan">Du code propre, des idées simples, des solutions efficaces</div>
+                    <div class="fw-bold">RESPOCODEUR</div>
+                    <div class="slogan">Du code propre, des idées simples</div>
                 </div>
             </a>
             
-            <div class="d-flex align-items-center">
-                <!-- Theme Toggle -->
-                <button id="theme-toggle" class="btn btn-outline-secondary btn-sm me-3">
-                    <i class="fas fa-moon"></i>
-                </button>
-                
-                <!-- Notification Bell -->
-                <button id="notification-bell" class="btn btn-outline-primary btn-sm me-3 position-relative">
+            <div class="d-flex align-items-center order-lg-3">
+                <!-- Cloche de notification -->
+                <button id="notification-bell" class="btn btn-outline-primary me-2 position-relative">
                     <i class="fas fa-bell"></i>
                     <span class="notification-badge"></span>
                 </button>
                 
-                <!-- Mobile Menu Toggle -->
+                <!-- Bouton thème -->
+                <button id="theme-toggle" class="btn btn-outline-primary me-3">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <!-- Bouton menu mobile -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                     <span class="navbar-toggler-icon"></span>
                 </button>
             </div>
             
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="#home">Accueil</a>
+                        <a class="nav-link active" href="#home">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">À propos</a>
@@ -69,32 +87,48 @@
                 </ul>
             </div>
         </div>
-    </header>
+    </nav>
 
-    <!-- Home Section -->
+    <!-- Section Accueil -->
     <section id="home" class="hero-section">
         <div class="container">
-            <div class="row min-vh-100 align-items-center">
-                <div class="col-lg-8 mx-auto text-center">
-                    <div class="hero-content">
-                        <h1 class="hero-title mb-4">
-                            Bonjour, je suis <span class="text-primary">Wilfred Djikiakam</span>
-                        </h1>
-                        <h2 class="hero-subtitle mb-4">
-                            Développeur Web & Logiciel
-                        </h2>
-                        <p class="hero-description mb-5">
-                            Étudiant en génie logiciel passionné par le développement web et desktop. 
-                            Je crée des solutions efficaces avec un code propre et des idées simples.
-                        </p>
-                        <div class="hero-actions">
-                            <a href="#portfolio" class="btn btn-primary btn-lg me-3">
-                                Voir mes projets
-                            </a>
-                            <a href="https://wa.me/+237672922360" class="btn btn-outline-success btn-lg" target="_blank">
-                                <i class="fab fa-whatsapp me-2"></i>WhatsApp
-                            </a>
-                        </div>
+            <div class="row align-items-center min-vh-100">
+                <div class="col-lg-6"><br><br>
+                    <h1 class="hero-title">
+                        Salut, je suis <span class="text-primary">Wilfred</span> 👋
+                    </h1>
+                    <h2 class="hero-subtitle text-secondary">Développeur Full-Stack & Étudiant en Génie Logiciel</h2>
+                    <p class="hero-description">
+                        Passionné par le développement C# et web, je transforme vos idées en solutions digitales innovantes. 
+                        <strong>"Le code est ma toile, l'innovation mon pinceau."</strong>
+                    </p>
+                    
+                    <!-- Badges devise -->
+                    <div class="mb-4">
+                        <span class="badge bg-primary me-2 p-2">
+                            <i class="fas fa-sync-alt me-1"></i>Adaptation
+                        </span>
+                        <span class="badge bg-success me-2 p-2">
+                            <i class="fas fa-fire me-1"></i>Motivation
+                        </span>
+                        <span class="badge bg-warning text-dark p-2">
+                            <i class="fas fa-handshake me-1"></i>Engagement
+                        </span>
+                    </div>
+                    
+                    <div class="hero-actions">
+                        <a href="#portfolio" class="btn btn-primary btn-lg me-3">
+                            <i class="fas fa-briefcase me-2"></i>Voir mes projets
+                        </a>
+                        <a href="https://wa.me/+237672922360" class="btn btn-success btn-lg" target="_blank">
+                            <i class="fab fa-whatsapp me-2"></i>WhatsApp
+                        </a>
+                    </div>
+                </div>
+                <div class="col-lg-6 text-center">
+                    <div class="hero-image">
+                        <img src="RESPO (2).jpg" 
+                             alt="Développeur au travail" class="img-fluid rounded-circle shadow-lg">
                     </div>
                 </div>
             </div>
@@ -104,83 +138,93 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-5">
+    <!-- Section À propos -->
+    <section id="about" class="bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="section-title text-center mb-5">À propos de moi</h2>
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">À propos de moi</h2>
+                    <p class="lead">Découvrez mon parcours et mes compétences</p>
                 </div>
             </div>
             
             <div class="row align-items-center">
-                <div class="col-lg-6 mb-4 mb-lg-0">
-                    <div class="about-image">
-                        <img src="IMG-20230503-WA0018.jpg" 
-                             alt="Wilfred Djikiakam" class="img-fluid rounded shadow-lg">
+                <div class="col-lg-6 mb-4">
+                    <div class="about-content">
+                        <blockquote class="blockquote">
+                            <p class="mb-0">"Le code est ma toile, l'innovation mon pinceau."</p>
+                            <footer class="blockquote-footer mt-2">Ma philosophie de développement</footer>
+                        </blockquote>
+                        
+                        <p>
+                            Je suis <strong>Wilfred Djikiakam</strong>, développeur passionné et étudiant en génie logiciel. 
+                            Spécialisé en <strong>C# et développement web</strong>, je m'adapte à tout domaine ou poste de travail 
+                            dans le monde de l'emploi.
+                        </p>
+                        
+                        <p>
+                            J'ai également une expérience pratique en <strong>gestion de stock</strong> en tant qu'Agent stock chez SCC, 
+                            ce qui m'a inspiré pour créer l'application Windows <strong>MySCC</strong> pour la gestion d'une minoterie.
+                        </p>
+                        
+                        <p>
+                            Auteur de l'application web <strong>PainPilote</strong> pour la gestion des mini boulangeries, 
+                            et contributeur actif sur <strong>GitHub</strong>. Je suis un garçon polyvalent et déterminé 
+                            à toujours relever de nouveaux défis.
+                        </p>
                     </div>
                 </div>
                 
                 <div class="col-lg-6">
-                    <div class="about-content">
-                        <h3 class="mb-4">Développeur passionné et polyvalent</h3>
-                        <p class="mb-4">
-                             En génie logiciel, je me spécialise dans le développement web et desktop. 
-                            Ma passion pour la programmation m'a conduit à maîtriser plusieurs technologies 
-                            et à développer une approche méthodique du développement logiciel.
-                        </p>
-                        
-                        <div class="skills-section mb-4">
-                            <h4 class="mb-3">Compétences Techniques</h4>
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="skill-item">
-                                        <i class="fab fa-html5 text-danger"></i>
-                                        <span>HTML5</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-css3-alt text-info"></i>
-                                        <span>CSS3</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-js text-warning"></i>
-                                        <span>JavaScript</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-bootstrap text-purple"></i>
-                                        <span>Bootstrap</span>
-                                    </div>
+                    <div class="skills-section">
+                        <h4 class="mb-4">Compétences Techniques</h4>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="skill-item">
+                                    <i class="fab fa-html5 text-danger"></i>
+                                    <span>HTML5 & CSS3</span>
                                 </div>
-                                <div class="col-md-6">
-                                    <div class="skill-item">
-                                        <i class="fas fa-code text-primary"></i>
-                                        <span>C#</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-database text-success"></i>
-                                        <span>MySQL</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fas fa-desktop text-secondary"></i>
-                                        <span>WinForms</span>
-                                    </div>
-                                    <div class="skill-item">
-                                        <i class="fab fa-git-alt text-danger"></i>
-                                        <span>Git</span>
-                                    </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-js-square text-warning"></i>
+                                    <span>JavaScript ES6+</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-bootstrap text-primary"></i>
+                                    <span>Bootstrap</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-code text-info"></i>
+                                    <span>C# & .NET</span>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="skill-item">
+                                    <i class="fas fa-database text-success"></i>
+                                    <span>MySQL</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-desktop text-secondary"></i>
+                                    <span>WinForms</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fab fa-github text-dark"></i>
+                                    <span>Git & GitHub</span>
+                                </div>
+                                <div class="skill-item">
+                                    <i class="fas fa-boxes text-warning"></i>
+                                    <span>Gestion de Stock</span>
                                 </div>
                             </div>
                         </div>
                         
+                        <h4 class="mb-3 mt-4">Soft Skills</h4>
                         <div class="soft-skills">
-                            <h4 class="mb-3">Soft Skills</h4>
-                            <div class="d-flex flex-wrap gap-2">
-                                <span class="badge bg-light text-dark">Disponibilité 24/24</span>
-                                <span class="badge bg-light text-dark">Autonomie</span>
-                                <span class="badge bg-light text-dark">Mobilité</span>
-                                <span class="badge bg-light text-dark">Travail d'équipe</span>
-                                <span class="badge bg-light text-dark">Problem solving</span>
-                            </div>
+                            <span class="badge bg-primary me-2 mb-2">Disponibilité 24/24</span>
+                            <span class="badge bg-success me-2 mb-2">Autonomie</span>
+                            <span class="badge bg-info me-2 mb-2">Mobilité</span>
+                            <span class="badge bg-warning text-dark me-2 mb-2">Polyvalence</span>
+                            <span class="badge bg-danger me-2 mb-2">Leadership</span>
+                            <span class="badge bg-secondary me-2 mb-2">Travail d'équipe</span>
                         </div>
                     </div>
                 </div>
@@ -188,54 +232,54 @@
         </div>
     </section>
 
-    <!-- Portfolio Section -->
-    <section id="portfolio" class="py-5 bg-light">
+    <!-- Section Portfolio -->
+    <section id="portfolio">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="section-title text-center mb-5">Portfolio</h2>
-                    <p class="text-center mb-5">Découvrez quelques-uns de mes projets récents</p>
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Portfolio</h2>
+                    <p class="lead">Découvrez mes réalisations et projets</p>
                 </div>
             </div>
             
             <div class="row">
-                <!-- Project 1: MySCC -->
-                <div class="col-lg-6 mb-4">
-                    <div class="project-card h-100">
+                <!-- Projet MySCC -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="project-card">
                         <div class="project-image">
                             <img src="Capture d’écran (14).png" 
-                                 alt="MySCC" class="img-fluid">
+                                 alt="MySCC Application" class="img-fluid">
                         </div>
                         <div class="project-content">
                             <h4>MySCC</h4>
-                            <p class="text-muted mb-3">Application Windows</p>
-                            <p>Application de gestion développée en C# avec WinForms. Interface intuitive pour la gestion des données avec base de données MySQL intégrée.</p>
+                            <p class="text-muted">Application Windows de gestion complète pour minoterie développée en C# WinForms.</p>
                             <div class="project-tech mb-3">
                                 <span class="tech-tag">C#</span>
                                 <span class="tech-tag">WinForms</span>
                                 <span class="tech-tag">MySQL</span>
                             </div>
                             <div class="project-actions">
-                                <button class="btn btn-primary btn-sm">Voir détails</button>
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="fab fa-github"></i>
+                                <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#mysccModal">
+                                    <i class="fas fa-eye me-1"></i>Voir plus
                                 </button>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 2: MyStudent -->
-                <div class="col-lg-6 mb-4">
-                    <div class="project-card h-100">
+
+                <!-- Projet MyStudent -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="project-card">
                         <div class="project-image">
-                            <img src="Capture d’écran (12).png" 
-                                 alt="MyStudent" class="img-fluid">
+                            <img src="https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                                 alt="MyStudent Platform" class="img-fluid">
                         </div>
                         <div class="project-content">
                             <h4>MyStudent</h4>
-                            <p class="text-muted mb-3">Application Web</p>
-                            <p>Plateforme web pour la gestion étudiante. Interface moderne et responsive développée avec HTML, CSS, JavaScript et Bootstrap.</p>
+                            <p class="text-muted">Plateforme web dédiée aux étudiants avec gestion des cours et ressources pédagogiques.</p>
                             <div class="project-tech mb-3">
                                 <span class="tech-tag">HTML5</span>
                                 <span class="tech-tag">CSS3</span>
@@ -243,65 +287,68 @@
                                 <span class="tech-tag">Bootstrap</span>
                             </div>
                             <div class="project-actions">
-                                <button class="btn btn-primary btn-sm">Voir détails</button>
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="fab fa-github"></i>
+                                <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#mystudentModal">
+                                    <i class="fas fa-eye me-1"></i>Voir plus
                                 </button>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
                 </div>
-                
-                <!-- Project 3: DigitalMarket -->
-                <div class="col-lg-6 mb-4">
-                    <div class="project-card h-100">
+
+                <!-- Projet DigitalMarket -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="project-card">
                         <div class="project-image">
-                            <img src="Capture d’écran (11).png" 
-                                 alt="DigitalMarket" class="img-fluid">
+                            <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                                 alt="DigitalMarket E-commerce" class="img-fluid">
                         </div>
                         <div class="project-content">
                             <h4>DigitalMarket</h4>
-                            <p class="text-muted mb-3">E-commerce Web</p>
-                            <p>Plateforme e-commerce complète avec gestion des produits, panier d'achat et système de paiement. Design moderne et fonctionnalités avancées.</p>
-                            <div class="project-tech mb-3">
-                                <span class="tech-tag">HTML5</span>
-                                <span class="tech-tag">CSS3</span>
-                                <span class="tech-tag">JavaScript</span>
-                                <span class="tech-tag">MySQL</span>
-                            </div>
-                            <div class="project-actions">
-                                <button class="btn btn-primary btn-sm">Voir détails</button>
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="fab fa-github"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                
-                <!-- Project 4: PainPilote -->
-                <div class="col-lg-6 mb-4">
-                    <div class="project-card h-100">
-                        <div class="project-image">
-                            <img src="painpilote.png" 
-                                 alt="PainPilote" class="img-fluid">
-                        </div>
-                        <div class="project-content">
-                            <h4>PainPilote</h4>
-                            <p class="text-muted mb-3">Gestion Boulangerie</p>
-                            <p>Application web complète pour la gestion d'une boulangerie. Gestion des stocks, commandes, clients et reporting avancé.</p>
+                            <p class="text-muted">Plateforme e-commerce moderne avec système de paiement intégré et gestion des stocks.</p>
                             <div class="project-tech mb-3">
                                 <span class="tech-tag">HTML5</span>
                                 <span class="tech-tag">CSS3</span>
                                 <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">PHP</span>
+                            </div>
+                            <div class="project-actions">
+                                <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#digitalmarketModal">
+                                    <i class="fas fa-eye me-1"></i>Voir plus
+                                </button>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Projet PainPilote -->
+                <div class="col-lg-6 col-md-6 mb-4">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="logo.png" 
+                                 alt="PainPilote Boulangerie" class="img-fluid">
+                        </div>
+                        <div class="project-content">
+                            <h4>PainPilote</h4>
+                            <p class="text-muted">Application web complète pour la gestion des mini boulangeries et suivi des ventes.</p>
+                            <div class="project-tech mb-3">
+                                <span class="tech-tag">HTML5</span>
+                                <span class="tech-tag">CSS3</span>
+                                <span class="tech-tag">JavaScript</span>
                                 <span class="tech-tag">MySQL</span>
                             </div>
                             <div class="project-actions">
-                                <button class="btn btn-primary btn-sm">Voir détails</button>
-                                <button class="btn btn-outline-secondary btn-sm">
-                                    <i class="fab fa-github"></i>
+                                <button class="btn btn-primary btn-sm me-2" data-bs-toggle="modal" data-bs-target="#painpiloteModal">
+                                    <i class="fas fa-eye me-1"></i>Voir plus
                                 </button>
+                                <a href="#" class="btn btn-outline-primary btn-sm">
+                                    <i class="fab fa-github me-1"></i>GitHub
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -310,70 +357,139 @@
         </div>
     </section>
 
-    <!-- Blog Section -->
-    <section id="blog" class="py-5">
+    <!-- Section Blog -->
+    <section id="blog" class="bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="section-title text-center mb-5">Blog</h2>
-                    <p class="text-center mb-5">Mes derniers articles et tutoriels</p>
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Blog Technique</h2>
+                    <p class="lead">Mes derniers articles et tutoriels</p>
                 </div>
             </div>
             
             <div class="row">
                 <!-- Article 1 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="blog-card h-100">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
-                                 alt="Article" class="img-fluid">
+                            <img src="https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                                 alt="JavaScript moderne" class="img-fluid">
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta mb-2">
-                                <span class="badge bg-primary">JavaScript</span>
-                                <small class="text-muted">15 Jan 2024</small>
+                            <div class="blog-meta">
+                                <span class="badge bg-warning text-dark">JavaScript</span>
+                                <small class="text-muted">20 Nov 2024</small>
                             </div>
-                            <h5>Les bonnes pratiques en JavaScript moderne</h5>
-                            <p class="text-muted">Découvrez les techniques essentielles pour écrire du JavaScript propre et maintenable en 2024...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                            <h5>JavaScript Moderne : Les Bonnes Pratiques ES6+</h5>
+                            <p class="text-muted">Découvrez les fonctionnalités modernes de JavaScript et comment les utiliser efficacement...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal1">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Article 2 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="blog-card h-100">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://images.pexels.com/photos/270348/pexels-photo-270348.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
-                                 alt="Article" class="img-fluid">
+                            <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                                 alt="CSS Grid vs Flexbox" class="img-fluid">
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta mb-2">
+                            <div class="blog-meta">
                                 <span class="badge bg-info">CSS</span>
-                                <small class="text-muted">12 Jan 2024</small>
+                                <small class="text-muted">18 Nov 2024</small>
                             </div>
-                            <h5>CSS Grid vs Flexbox : quand utiliser quoi ?</h5>
-                            <p class="text-muted">Guide complet pour choisir entre CSS Grid et Flexbox selon vos besoins de mise en page...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                            <h5>CSS Grid vs Flexbox : Quand Utiliser Quoi ?</h5>
+                            <p class="text-muted">Guide complet pour choisir entre CSS Grid et Flexbox selon vos besoins de layout...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal2">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
                         </div>
                     </div>
                 </div>
-                
+
                 <!-- Article 3 -->
-                <div class="col-lg-4 mb-4">
-                    <div class="blog-card h-100">
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
                         <div class="blog-image">
-                            <img src="https://images.pexels.com/photos/1181671/pexels-photo-1181671.jpeg?auto=compress&cs=tinysrgb&w=600&h=300&fit=crop" 
-                                 alt="Article" class="img-fluid">
+                            <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=400" 
+                                 alt="C# et WinForms" class="img-fluid">
                         </div>
                         <div class="blog-content">
-                            <div class="blog-meta mb-2">
-                                <span class="badge bg-success">C#</span>
-                                <small class="text-muted">8 Jan 2024</small>
+                            <div class="blog-meta">
+                                <span class="badge bg-primary">C#</span>
+                                <small class="text-muted">16 Nov 2024</small>
                             </div>
-                            <h5>Débuter avec C# et WinForms</h5>
-                            <p class="text-muted">Tutorial pour créer votre première application desktop avec C# et WinForms...</p>
-                            <a href="#" class="btn btn-outline-primary btn-sm">Lire la suite</a>
+                            <h5>Développer avec C# et WinForms : Mon Retour d'Expérience</h5>
+                            <p class="text-muted">Partage de mon expérience dans le développement d'applications desktop avec C#...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal3">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="Polish_20231024_171349313.jpg" 
+                                 alt="Gestion de stock" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="badge bg-warning text-dark">Gestion</span>
+                                <small class="text-muted">15 Nov 2024</small>
+                            </div>
+                            <h5>De SCC au Code : Mon Expérience en Gestion de Stock</h5>
+                            <p class="text-muted">Comment mon expérience d'agent stock chez SCC a influencé le développement de MySCC...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal4">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="IMG-20230503-WA0018.jpg" 
+                                 alt="Polyvalence développement" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="badge bg-success">Carrière</span>
+                                <small class="text-muted">12 Nov 2024</small>
+                            </div>
+                            <h5>La Polyvalence en Développement : Adaptation-Motivation-Engagement</h5>
+                            <p class="text-muted">Ma philosophie pour réussir dans le monde du développement logiciel...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal5">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Article 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="blog-card">
+                        <div class="blog-image">
+                            <img src="RESPOLOGO3D.png" 
+                                 alt="GitHub contribution" class="img-fluid">
+                        </div>
+                        <div class="blog-content">
+                            <div class="blog-meta">
+                                <span class="badge bg-dark">GitHub</span>
+                                <small class="text-muted">10 Nov 2024</small>
+                            </div>
+                            <h5>Contribuer sur GitHub : Guide pour Débuter dans l'Open Source</h5>
+                            <p class="text-muted">Comment commencer à contribuer aux projets open source et construire sa réputation...</p>
+                            <button class="btn btn-outline-primary btn-sm" data-bs-toggle="modal" data-bs-target="#blogModal6">
+                                <i class="fas fa-arrow-right me-1"></i>Lire la suite
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -381,37 +497,37 @@
         </div>
     </section>
 
-    <!-- Contact Section -->
-    <section id="contact" class="py-5 bg-light">
+    <!-- Section Contact -->
+    <section id="contact">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
-                    <h2 class="section-title text-center mb-5">Contact</h2>
-                    <p class="text-center mb-5">Parlons de votre prochain projet</p>
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Contact</h2>
+                    <p class="lead">Travaillons ensemble sur votre prochain projet</p>
                 </div>
             </div>
             
-            <div class="row">
-                <div class="col-lg-8 mx-auto">
+            <div class="row justify-content-center">
+                <div class="col-lg-8">
                     <div class="contact-form-container">
-                        <form id="contact-form" class="contact-form">
+                        <form id="contact-form">
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label for="name" class="form-label">Nom complet</label>
-                                    <input type="text" class="form-control" id="name" required>
+                                    <input type="text" class="form-control" id="name" name="name" required>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <label for="email" class="form-label">Email</label>
-                                    <input type="email" class="form-control" id="email" required>
+                                    <input type="email" class="form-control" id="email" name="email" required>
                                 </div>
                             </div>
                             <div class="mb-3">
                                 <label for="subject" class="form-label">Sujet</label>
-                                <input type="text" class="form-control" id="subject" required>
+                                <input type="text" class="form-control" id="subject" name="subject" required>
                             </div>
                             <div class="mb-4">
                                 <label for="message" class="form-label">Message</label>
-                                <textarea class="form-control" id="message" rows="5" required></textarea>
+                                <textarea class="form-control" id="message" name="message" rows="5" required></textarea>
                             </div>
                             <div class="text-center">
                                 <button type="submit" class="btn btn-primary btn-lg">
@@ -419,42 +535,29 @@
                                 </button>
                             </div>
                         </form>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="row mt-5">
-                <div class="col-lg-12">
-                    <div class="contact-info text-center">
-                        <div class="row">
-                            <div class="col-lg-6 mx-auto">
-                                <h4 class="mb-4">Contactez-moi directement</h4>
-                                <div class="contact-actions mb-4">
-                                    <a href="https://wa.me/+237672922360" class="btn btn-success btn-lg me-3 mb-2" target="_blank">
-                                        <i class="fab fa-whatsapp me-2"></i>WhatsApp
-                                    </a>
-                                    <a href="mailto:wilfreddjikiakam@gmail.com" class="btn btn-outline-primary btn-lg mb-2">
-                                        <i class="fas fa-envelope me-2"></i>Email
-                                    </a>
-                                </div>
-                                
-                                <div class="social-links">
-                                    <h5 class="mb-3">Retrouvez-moi sur</h5>
-                                    <div class="d-flex justify-content-center gap-3">
-                                        <a href="https://facebook.com/respocodeur" class="social-link" target="_blank">
-                                            <i class="fab fa-facebook-f"></i>
-                                        </a>
-                                        <a href="https://instagram.com/wilfred.djikiakam" class="social-link" target="_blank">
-                                            <i class="fab fa-instagram"></i>
-                                        </a>
-                                        <a href="https://twitter.com/wilfred.djikiakam" class="social-link" target="_blank">
-                                            <i class="fab fa-twitter"></i>
-                                        </a>
-                                        <a href="https://linkedin.com/in/wilfred.djikiakam" class="social-link" target="_blank">
-                                            <i class="fab fa-linkedin-in"></i>
-                                        </a>
-                                    </div>
-                                </div>
+                        
+                        <!-- Liens sociaux -->
+                        <div class="social-links text-center">
+                            <h5 class="mb-3">Suivez-moi</h5>
+                            <div class="d-flex justify-content-center flex-wrap">
+                                <a href="mailto:wilfreddjikiakam@gmail.com" class="social-link">
+                                    <i class="fas fa-envelope"></i>
+                                </a>
+                                <a href="https://facebook.com/respocodeur" class="social-link facebook" target="_blank">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                                <a href="https://instagram.com/wilfred.djikiakam" class="social-link instagram" target="_blank">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://twitter.com/wilfred.djikiakam" class="social-link twitter" target="_blank">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://linkedin.com/in/wilfred.djikiakam" class="social-link linkedin" target="_blank">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="https://wa.me/+237123456789" class="social-link" style="background: #25D366;" target="_blank">
+                                    <i class="fab fa-whatsapp"></i>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -468,26 +571,1324 @@
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-md-6">
-                    <div class="d-flex align-items-center">
-                        <div class="logo-placeholder me-3">
-                            <i class="fas fa-code text-primary"></i>
-                        </div>
-                        <div>
-                            <strong>RESPOCODEUR</strong>
-                            <div class="text-muted small">Du code propre, des idées simples</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 text-md-end mt-3 mt-md-0">
                     <p class="mb-0">&copy; <span id="current-year"></span> RESPOCODEUR - Tous droits réservés</p>
+                </div>
+                <div class="col-md-6 text-md-end">
+                    <p class="mb-0">Développé avec ❤️ par Wilfred Djikiakam</p>
                 </div>
             </div>
         </div>
     </footer>
 
+    <!-- MODALS POUR LES PROJETS -->
+    
+    <!-- Modal MySCC -->
+    <div class="modal fade" id="mysccModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-desktop me-2 text-primary"></i>MySCC - Application de Gestion Minoterie
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="Capture d’écran (11).png" 
+                                 alt="MySCC Interface" class="img-fluid rounded mb-3">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🎯 Objectif du Projet</h6>
+                            <p>Développer une solution complète de gestion pour minoterie basée sur mon expérience d'agent stock chez SCC.</p>
+                            
+                            <h6 class="text-primary mt-3">⚡ Fonctionnalités Principales</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Gestion des stocks de matières premières</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Suivi de la production quotidienne</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Gestion des commandes clients</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Rapports financiers automatisés</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Interface utilisateur intuitive</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🛠️ Technologies Utilisées</h6>
+                            <div class="mb-3">
+                                <span class="badge bg-primary me-2">C# .NET Framework</span>
+                                <span class="badge bg-info me-2">WinForms</span>
+                                <span class="badge bg-success me-2">MySQL</span>
+                                <span class="badge bg-warning text-dark">Crystal Reports</span>
+                            </div>
+                            
+                            <h6 class="text-primary">📊 Impact Métier</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-arrow-up text-success me-2"></i>+40% d'efficacité dans la gestion des stocks</li>
+                                <li><i class="fas fa-arrow-down text-success me-2"></i>-60% d'erreurs de saisie</li>
+                                <li><i class="fas fa-clock text-info me-2"></i>Gain de 3h/jour sur les rapports</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">💡 Défis Techniques Relevés</h6>
+                            <ul>
+                                <li>Optimisation des requêtes pour de gros volumes de données</li>
+                                <li>Synchronisation temps réel des stocks</li>
+                                <li>Interface responsive adaptée aux écrans tactiles</li>
+                                <li>Système de sauvegarde automatique</li>
+                            </ul>
+                            
+                            <blockquote class="blockquote mt-3">
+                                <p class="mb-0 small">"Cette application transforme complètement notre façon de gérer la minoterie. Simple, efficace et fiable."</p>
+                                <br>
+                                <footer class="blockquote-footer">Temoignage de Ing Deumi Franck</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fab fa-github me-1"></i>Voir sur GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal MyStudent -->
+    <div class="modal fade" id="mystudentModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-graduation-cap me-2 text-primary"></i>MyStudent - Plateforme Étudiante
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="https://images.pexels.com/photos/5905709/pexels-photo-5905709.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                                 alt="MyStudent Interface" class="img-fluid rounded mb-3">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🎯 Vision du Projet</h6>
+                            <p>Créer une plateforme centralisée pour faciliter la vie étudiante et améliorer l'accès aux ressources pédagogiques.</p>
+                            
+                            <h6 class="text-primary mt-3">📚 Modules Principaux</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-book text-primary me-2"></i>Bibliothèque de cours en ligne</li>
+                                <li><i class="fas fa-calendar text-info me-2"></i>Planning des cours et examens</li>
+                                <li><i class="fas fa-users text-success me-2"></i>Forum d'entraide étudiante</li>
+                                <li><i class="fas fa-chart-line text-warning me-2"></i>Suivi des notes et progression</li>
+                                <li><i class="fas fa-bell text-danger me-2"></i>Notifications importantes</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🛠️ Stack Technique</h6>
+                            <div class="mb-3">
+                                <span class="badge bg-danger me-2">HTML5</span>
+                                <span class="badge bg-primary me-2">CSS3</span>
+                                <span class="badge bg-warning text-dark me-2">JavaScript</span>
+                                <span class="badge bg-purple text-white me-2">Bootstrap 5</span>
+                                <span class="badge bg-success me-2">MySQL</span>
+                            </div>
+                            
+                            <h6 class="text-primary">🎨 Fonctionnalités UX</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-mobile-alt text-primary me-2"></i>Design responsive mobile-first</li>
+                                <li><i class="fas fa-moon text-secondary me-2"></i>Mode sombre/clair</li>
+                                <li><i class="fas fa-search text-info me-2"></i>Recherche intelligente</li>
+                                <li><i class="fas fa-download text-success me-2"></i>Téléchargement hors-ligne</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">📈 Statistiques d'Usage</h6>
+                            <div class="timeline">
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-primary"></div>
+                                    <div class="timeline-content">
+                                        <h6>Phase 1 - MVP</h6>
+                                        <p>50+ étudiants testeurs, feedback positif à 85%</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-success"></div>
+                                    <div class="timeline-content">
+                                        <h6>Phase 2 - Déploiement</h6>
+                                        <p>200+ utilisateurs actifs, 95% de satisfaction</p>
+                                    </div>
+                                </div>
+                                <div class="timeline-item">
+                                    <div class="timeline-marker bg-warning"></div>
+                                    <div class="timeline-content">
+                                        <h6>Phase 3 - Évolution</h6>
+                                        <p>Nouvelles fonctionnalités en développement</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-external-link-alt me-1"></i>Voir la démo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal DigitalMarket -->
+    <div class="modal fade" id="digitalmarketModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-shopping-cart me-2 text-primary"></i>DigitalMarket - E-commerce Platform
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="https://images.pexels.com/photos/230544/pexels-photo-230544.jpeg?auto=compress&cs=tinysrgb&w=500" 
+                                 alt="DigitalMarket Interface" class="img-fluid rounded mb-3">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🛒 Concept du Projet</h6>
+                            <p>Plateforme e-commerce moderne avec focus sur l'expérience utilisateur et la performance des ventes.</p>
+                            
+                            <h6 class="text-primary mt-3">🚀 Fonctionnalités Avancées</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-robot text-info me-2"></i>Recommandations IA personnalisées</li>
+                                <li><i class="fas fa-credit-card text-success me-2"></i>Paiements sécurisés multi-devises</li>
+                                <li><i class="fas fa-truck text-warning me-2"></i>Suivi de livraison temps réel</li>
+                                <li><i class="fas fa-star text-warning me-2"></i>Système d'avis et notations</li>
+                                <li><i class="fas fa-headset text-primary me-2"></i>Chat support intégré</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">💻 Architecture Technique</h6>
+                            <div class="mb-3">
+                                <span class="badge bg-danger me-2">HTML5</span>
+                                <span class="badge bg-primary me-2">CSS3</span>
+                                <span class="badge bg-warning text-dark me-2">JavaScript</span>
+                                <span class="badge bg-info me-2">PHP 8</span>
+                                <span class="badge bg-success me-2">MySQL</span>
+                                <span class="badge bg-secondary me-2">Redis</span>
+                            </div>
+                            
+                            <h6 class="text-primary">🔒 Sécurité & Performance</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-shield-alt text-success me-2"></i>Chiffrement SSL/TLS</li>
+                                <li><i class="fas fa-lock text-warning me-2"></i>Authentification 2FA</li>
+                                <li><i class="fas fa-tachometer-alt text-info me-2"></i>Cache Redis optimisé</li>
+                                <li><i class="fas fa-compress text-primary me-2"></i>Images WebP compressées</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">📊 Métriques Business</h6>
+                            <div class="row text-center mb-3">
+                                <div class="col-4">
+                                    <div class="bg-light p-2 rounded">
+                                        <h5 class="text-primary mb-0">98%</h5>
+                                        <small>Uptime</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="bg-light p-2 rounded">
+                                        <h5 class="text-success mb-0">2.3s</h5>
+                                        <small>Load Time</small>
+                                    </div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="bg-light p-2 rounded">
+                                        <h5 class="text-warning mb-0">4.8/5</h5>
+                                        <small>Rating</small>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <h6 class="text-primary">🎯 Objectifs Atteints</h6>
+                            <ul>
+                                <li>Interface intuitive et moderne</li>
+                                <li>Processus de commande simplifié</li>
+                                <li>Gestion automatisée des stocks</li>
+                                <li>Analytics détaillées pour les vendeurs</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="#" class="btn btn-success">
+                        <i class="fas fa-play me-1"></i>Voir la démo live
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal PainPilote -->
+    <div class="modal fade" id="painpiloteModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-bread-slice me-2 text-primary"></i>PainPilote - Gestion Boulangerie
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <img src="Capture d’écran (25).png" 
+                                 alt="PainPilote Interface" class="img-fluid rounded mb-3">
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🥖 Mission du Projet</h6>
+                            <p>Digitaliser la gestion des mini boulangeries avec une solution web complète et accessible.</p>
+                            
+                            <h6 class="text-primary mt-3">⚙️ Modules Intégrés</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-cash-register text-success me-2"></i>Point de vente (POS)</li>
+                                <li><i class="fas fa-warehouse text-info me-2"></i>Gestion des stocks</li>
+                                <li><i class="fas fa-users text-primary me-2"></i>Gestion clientèle</li>
+                                <li><i class="fas fa-chart-pie text-warning me-2"></i>Rapports de vente</li>
+                                <li><i class="fas fa-calendar-check text-danger me-2"></i>Planning de production</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🛠️ Technologies Web</h6>
+                            <div class="mb-3">
+                                <span class="badge bg-danger me-2">HTML5</span>
+                                <span class="badge bg-primary me-2">CSS3</span>
+                                <span class="badge bg-warning text-dark me-2">JavaScript</span>
+                                <span class="badge bg-purple text-white me-2">Bootstrap</span>
+                                <span class="badge bg-success me-2">MySQL</span>
+                                <span class="badge bg-info me-2">Chart.js</span>
+                            </div>
+                            
+                            <h6 class="text-primary">📱 Expérience Utilisateur</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-tablet-alt text-primary me-2"></i>Interface tactile optimisée</li>
+                                <li><i class="fas fa-wifi text-success me-2"></i>Fonctionnement hors-ligne</li>
+                                <li><i class="fas fa-print text-info me-2"></i>Impression tickets automatique</li>
+                                <li><i class="fas fa-language text-warning me-2"></i>Multi-langues (FR/EN)</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">💼 Impact Business</h6>
+                            <div class="experience-item">
+                                <h6>Boulangerie "Le Bon Pain"</h6>
+                                <p>+35% d'efficacité, -50% d'erreurs de caisse, ROI en 3 mois</p>
+                            </div>
+                            <div class="experience-item">
+                                <h6>Réseau "Pain Doré" (5 points de vente)</h6>
+                                <p>Centralisation des données, rapports consolidés, gestion multi-sites</p>
+                            </div>
+                            
+                            <blockquote class="blockquote mt-3">
+                                <p class="mb-0 small">"PainPilote a révolutionné notre gestion quotidienne. Simple, rapide et très fiable."</p>
+                                <footer class="blockquote-footer">Marie Dubois, Propriétaire</footer>
+                            </blockquote>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h6 class="text-primary">🔮 Évolutions Prévues</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                <li>Application mobile native</li>
+                                <li>Intégration paiements mobiles</li>
+                                <li>IA pour prédiction des ventes</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                <li>Module de fidélisation client</li>
+                                <li>Commandes en ligne</li>
+                                <li>API pour partenaires</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="#" class="btn btn-warning">
+                        <i class="fas fa-eye me-1"></i>Demander une démo
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- MODALS POUR LES ARTICLES DE BLOG -->
+    
+    <!-- Modal Blog 1 -->
+    <div class="modal fade" id="blogModal1" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fab fa-js-square me-2 text-warning"></i>JavaScript Moderne : Les Bonnes Pratiques ES6+
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-warning text-dark me-2">JavaScript</span>
+                        <span class="badge bg-info me-2">ES6+</span>
+                        <span class="badge bg-success">Tutoriel</span>
+                        <small class="text-muted ms-3">📅 20 Nov 2024 • ⏱️ 8 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/11035380/pexels-photo-11035380.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="JavaScript moderne" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🚀 Introduction</h6>
+                    <p>
+                        JavaScript a considérablement évolué avec ES6+ (ECMAScript 2015 et versions ultérieures). 
+                        Ces nouvelles fonctionnalités permettent d'écrire un code plus propre, plus lisible et plus maintenable.
+                    </p>
+                    
+                    <h6 class="text-primary">📝 Les Fonctionnalités Essentielles</h6>
+                    
+                    <h6>1. Les Variables : let et const</h6>
+                    <p>Fini le <code>var</code> ! Utilisez <code>let</code> pour les variables modifiables et <code>const</code> pour les constantes.</p>
+                    <pre class="bg-light p-3 rounded"><code>// ❌ Évitez
+var name = 'Wilfred';
+
+// ✅ Préférez
+const name = 'Wilfred';
+let age = 25;</code></pre>
+                    
+                    <h6>2. Les Fonctions Fléchées</h6>
+                    <p>Syntaxe plus concise et gestion automatique du contexte <code>this</code>.</p>
+                    <pre class="bg-light p-3 rounded"><code>// ❌ Fonction classique
+function add(a, b) {
+    return a + b;
+}
+
+// ✅ Fonction fléchée
+const add = (a, b) => a + b;</code></pre>
+                    
+                    <h6>3. Destructuring</h6>
+                    <p>Extraire facilement des valeurs d'objets et de tableaux.</p>
+                    <pre class="bg-light p-3 rounded"><code>// Destructuring d'objet
+const user = { name: 'Wilfred', age: 25 };
+const { name, age } = user;
+
+// Destructuring de tableau
+const colors = ['red', 'green', 'blue'];
+const [primary, secondary] = colors;</code></pre>
+                    
+                    <h6 class="text-primary">💡 Conseils Pratiques</h6>
+                    <ul>
+                        <li><strong>Template Literals</strong> : Utilisez les backticks pour les chaînes dynamiques</li>
+                        <li><strong>Spread Operator</strong> : Parfait pour copier et fusionner des tableaux/objets</li>
+                        <li><strong>Async/Await</strong> : Remplacez les callbacks par cette syntaxe plus claire</li>
+                        <li><strong>Modules ES6</strong> : Organisez votre code avec import/export</li>
+                    </ul>
+                    
+                    <blockquote class="blockquote">
+                        <p class="mb-0">"Un code moderne est un code qui se lit comme une histoire bien écrite."</p>
+                        <footer class="blockquote-footer mt-2">Wilfred Djikiakam</footer>
+                    </blockquote>
+                    
+                    <h6 class="text-primary">🎯 Conclusion</h6>
+                    <p>
+                        Adopter ces bonnes pratiques ES6+ vous permettra d'écrire un JavaScript plus professionnel 
+                        et de rejoindre les standards de l'industrie. N'hésitez pas à pratiquer ces concepts dans vos projets !
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fas fa-share me-1"></i>Partager
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Blog 2 -->
+    <div class="modal fade" id="blogModal2" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fab fa-css3-alt me-2 text-info"></i>CSS Grid vs Flexbox : Quand Utiliser Quoi ?
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-info me-2">CSS</span>
+                        <span class="badge bg-primary me-2">Layout</span>
+                        <span class="badge bg-warning text-dark">Guide</span>
+                        <small class="text-muted ms-3">📅 18 Nov 2024 • ⏱️ 6 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/196644/pexels-photo-196644.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="CSS Grid vs Flexbox" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🤔 Le Dilemme du Développeur</h6>
+                    <p>
+                        CSS Grid et Flexbox sont deux outils puissants pour créer des layouts modernes. 
+                        Mais comment choisir entre les deux ? Voici mon guide pratique basé sur l'expérience.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 mb-3">
+                                <h6 class="text-success">🎯 Utilisez Flexbox pour :</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Alignement d'éléments en ligne</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Navigation horizontale</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Centrage vertical/horizontal</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Distribution d'espace</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Composants UI (cards, boutons)</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 mb-3">
+                                <h6 class="text-primary">🎯 Utilisez CSS Grid pour :</h6>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-primary me-2"></i>Layouts de page complexes</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Grilles d'images/produits</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Positionnement précis</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Layouts responsives avancés</li>
+                                    <li><i class="fas fa-check text-primary me-2"></i>Superposition d'éléments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">💻 Exemples Pratiques</h6>
+                    
+                    <h6>Flexbox - Navigation</h6>
+                    <pre class="bg-light p-3 rounded"><code>.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-links {
+    display: flex;
+    gap: 1rem;
+}</code></pre>
+                    
+                    <h6>CSS Grid - Layout de Page</h6>
+                    <pre class="bg-light p-3 rounded"><code>.page-layout {
+    display: grid;
+    grid-template-areas: 
+        "header header"
+        "sidebar main"
+        "footer footer";
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+}</code></pre>
+                    
+                    <h6 class="text-primary">🔄 Peut-on les Combiner ?</h6>
+                    <p>
+                        <strong>Absolument !</strong> Dans mes projets comme <strong>PainPilote</strong> et <strong>MyStudent</strong>, 
+                        j'utilise CSS Grid pour la structure générale et Flexbox pour les composants internes.
+                    </p>
+                    
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <strong>Astuce Pro :</strong> Commencez par définir votre layout global avec Grid, 
+                        puis utilisez Flexbox pour aligner le contenu à l'intérieur de chaque zone.
+                    </div>
+                    
+                    <h6 class="text-primary">📱 Responsive Design</h6>
+                    <p>
+                        Les deux technologies excellent en responsive, mais Grid offre plus de contrôle 
+                        pour les changements de layout complexes entre les breakpoints.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-info">
+                        <i class="fas fa-code me-1"></i>Voir les exemples
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Blog 3 -->
+    <div class="modal fade" id="blogModal3" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-code me-2 text-primary"></i>Développer avec C# et WinForms : Mon Retour d'Expérience
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-primary me-2">C#</span>
+                        <span class="badge bg-secondary me-2">WinForms</span>
+                        <span class="badge bg-success">Expérience</span>
+                        <small class="text-muted ms-3">📅 16 Nov 2024 • ⏱️ 10 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/574071/pexels-photo-574071.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="C# et WinForms" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🎯 Pourquoi C# et WinForms ?</h6>
+                    <p>
+                        Quand j'ai commencé le développement de <strong>MySCC</strong>, j'avais besoin d'une solution 
+                        robuste et rapide à déployer. C# avec WinForms s'est imposé naturellement pour plusieurs raisons :
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Performance native</strong> : Pas de couche d'abstraction web</li>
+                        <li><strong>Intégration Windows</strong> : Accès direct aux ressources système</li>
+                        <li><strong>Déploiement simple</strong> : Un seul exécutable</li>
+                        <li><strong>Écosystème riche</strong> : NuGet et .NET Framework</li>
+                    </ul>
+                    
+                    <h6 class="text-primary">🛠️ Architecture de MySCC</h6>
+                    <p>Voici comment j'ai structuré l'application :</p>
+                    
+                    <pre class="bg-light p-3 rounded"><code>MySCC/
+├── Models/          // Entités métier
+├── Views/           // Formulaires WinForms
+├── Controllers/     // Logique applicative
+├── Services/        // Services métier
+├── Data/           // Accès aux données
+└── Utils/          // Utilitaires</code></pre>
+                    
+                    <h6 class="text-primary">💡 Bonnes Pratiques Apprises</h6>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>✅ À Faire</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-check text-success me-2"></i>Séparer UI et logique métier</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Utiliser des UserControls réutilisables</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Implémenter IDisposable</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Gérer les exceptions proprement</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Utiliser async/await pour les I/O</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>❌ À Éviter</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-times text-danger me-2"></i>Logique métier dans les formulaires</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Accès direct à la DB depuis l'UI</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Oublier de libérer les ressources</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Bloquer l'UI avec des opérations longues</li>
+                                <li><i class="fas fa-times text-danger me-2"></i>Hardcoder les chaînes de connexion</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">🔧 Exemple Concret : Gestion des Stocks</h6>
+                    <p>Voici comment j'ai implémenté la mise à jour des stocks en temps réel :</p>
+                    
+                    <pre class="bg-light p-3 rounded"><code>public partial class StockForm : Form
+{
+    private readonly IStockService _stockService;
+    private readonly Timer _refreshTimer;
+    
+    public StockForm(IStockService stockService)
+    {
+        InitializeComponent();
+        _stockService = stockService;
+        InitializeTimer();
+    }
+    
+    private async void RefreshStock()
+    {
+        try
+        {
+            var stocks = await _stockService.GetAllAsync();
+            UpdateDataGridView(stocks);
+        }
+        catch (Exception ex)
+        {
+            MessageBox.Show($"Erreur : {ex.Message}");
+        }
+    }
+}</code></pre>
+                    
+                    <h6 class="text-primary">📊 Résultats Obtenus</h6>
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="bg-light p-3 rounded">
+                                <h4 class="text-primary">95%</h4>
+                                <small>Satisfaction utilisateur</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-light p-3 rounded">
+                                <h4 class="text-success">0.5s</h4>
+                                <small>Temps de démarrage</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-light p-3 rounded">
+                                <h4 class="text-warning">50MB</h4>
+                                <small>Empreinte mémoire</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-light p-3 rounded">
+                                <h4 class="text-info">99.9%</h4>
+                                <small>Uptime</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <blockquote class="blockquote mt-4">
+                        <p class="mb-0">"WinForms peut sembler 'old school', mais pour des applications métier robustes, c'est encore un excellent choix."</p>
+                        <footer class="blockquote-footer mt-2">Mon apprentissage avec MySCC</footer>
+                    </blockquote>
+                    
+                    <h6 class="text-primary">🚀 Évolution vers .NET 6+</h6>
+                    <p>
+                        Aujourd'hui, je migre progressivement vers .NET 6+ avec WinUI 3 pour bénéficier 
+                        des dernières améliorations tout en gardant la robustesse de l'écosystème .NET.
+                    </p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-primary">
+                        <i class="fab fa-github me-1"></i>Voir le code source
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Blog 4 -->
+    <div class="modal fade" id="blogModal4" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-boxes me-2 text-warning"></i>De SCC au Code : Mon Expérience en Gestion de Stock
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-warning text-dark me-2">Gestion</span>
+                        <span class="badge bg-info me-2">Expérience</span>
+                        <span class="badge bg-success">Carrière</span>
+                        <small class="text-muted ms-3">📅 15 Nov 2024 • ⏱️ 7 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/1181298/pexels-photo-1181298.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Gestion de stock" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🏢 Mon Expérience chez SCC</h6>
+                    <p>
+                        Avant de me lancer pleinement dans le développement, j'ai travaillé comme <strong>Agent Stock chez SCC</strong> 
+                        (Société des Céréales du cameroun). Cette expérience a été déterminante dans ma compréhension 
+                        des enjeux métier et m'a inspiré pour créer <strong>MySCC</strong>.
+                    </p>
+                    
+                    <h6 class="text-primary">📋 Mes Responsabilités Quotidiennes</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-clipboard-check text-success me-2"></i>Réception et contrôle des marchandises</li>
+                                <li><i class="fas fa-warehouse text-info me-2"></i>Gestion des emplacements de stockage</li>
+                                <li><i class="fas fa-chart-line text-warning me-2"></i>Suivi des niveaux de stock</li>
+                                <li><i class="fas fa-truck text-primary me-2"></i>Préparation des expéditions</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-file-alt text-secondary me-2"></i>Tenue des registres manuels</li>
+                                <li><i class="fas fa-calculator text-danger me-2"></i>Calculs de rendement</li>
+                                <li><i class="fas fa-users text-success me-2"></i>Coordination avec les équipes</li>
+                                <li><i class="fas fa-exclamation-triangle text-warning me-2"></i>Gestion des alertes stock</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">😤 Les Défis Rencontrés</h6>
+                    <div class="alert alert-warning">
+                        <h6><i class="fas fa-exclamation-triangle me-2"></i>Problèmes Identifiés</h6>
+                        <ul class="mb-0">
+                            <li><strong>Saisie manuelle</strong> : Erreurs fréquentes et perte de temps</li>
+                            <li><strong>Rapports tardifs</strong> : Difficile de prendre des décisions rapides</li>
+                            <li><strong>Traçabilité limitée</strong> : Suivi des mouvements complexe</li>
+                            <li><strong>Communication</strong> : Informations dispersées entre services</li>
+                        </ul>
+                    </div>
+                    
+                    <h6 class="text-primary">💡 L'Idée de MySCC</h6>
+                    <p>
+                        Face à ces défis quotidiens, j'ai commencé à imaginer une solution digitale. 
+                        <strong>"Et si on pouvait automatiser tout ça ?"</strong> Cette question a été le point de départ de MySCC.
+                    </p>
+                    
+                    <blockquote class="blockquote">
+                        <p class="mb-0">"Les meilleures solutions naissent de l'expérience terrain. Avoir vécu les problèmes me permet de créer des solutions vraiment utiles."</p>
+                        <footer class="blockquote-footer mt-2">Ma philosophie de développement</footer>
+                    </blockquote>
+                    
+                    <h6 class="text-primary">🔄 De l'Expérience au Code</h6>
+                    <p>Voici comment j'ai traduit mon expérience terrain en fonctionnalités logicielles :</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3">
+                                <h6 class="text-info">🏢 Problème Terrain</h6>
+                                <p class="small">Registres papier difficiles à maintenir et à consulter</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3">
+                                <h6 class="text-success">💻 Solution Code</h6>
+                                <p class="small">Interface digitale avec recherche instantanée et historique complet</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row mt-2">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3">
+                                <h6 class="text-info">🏢 Problème Terrain</h6>
+                                <p class="small">Calculs manuels longs et sujets aux erreurs</p>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3">
+                                <h6 class="text-success">💻 Solution Code</h6>
+                                <p class="small">Calculs automatiques en temps réel avec validation des données</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">📈 Impact de MySCC</h6>
+                    <p>
+                        Quand j'ai présenté MySCC à mes anciens collègues, les retours ont été enthousiastes :
+                    </p>
+                    
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="bg-success text-white p-3 rounded">
+                                <h4>-75%</h4>
+                                <small>Temps de saisie</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="bg-primary text-white p-3 rounded">
+                                <h4>-90%</h4>
+                                <small>Erreurs de calcul</small>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="bg-warning text-dark p-3 rounded">
+                                <h4>+200%</h4>
+                                <small>Rapidité des rapports</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary mt-4">🎯 Leçons Apprises</h6>
+                    <ul>
+                        <li><strong>L'expérience utilisateur prime</strong> : Connaître les vrais besoins</li>
+                        <li><strong>La simplicité est clé</strong> : Interface intuitive pour tous les niveaux</li>
+                        <li><strong>La fiabilité est cruciale</strong> : Zéro tolérance pour les bugs en production</li>
+                        <li><strong>L'accompagnement compte</strong> : Former les utilisateurs au changement</li>
+                    </ul>
+                    
+                    <div class="alert alert-info mt-3">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <strong>Conseil aux développeurs :</strong> Passez du temps sur le terrain avec vos utilisateurs. 
+                        C'est là que naissent les vraies innovations !
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-warning">
+                        <i class="fas fa-eye me-1"></i>Voir MySCC en action
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Blog 5 -->
+    <div class="modal fade" id="blogModal5" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-rocket me-2 text-success"></i>La Polyvalence en Développement : Adaptation-Motivation-Engagement
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-success me-2">Carrière</span>
+                        <span class="badge bg-primary me-2">Philosophie</span>
+                        <span class="badge bg-warning text-dark">Motivation</span>
+                        <small class="text-muted ms-3">📅 12 Nov 2024 • ⏱️ 9 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/3861958/pexels-photo-3861958.jpeg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="Polyvalence développement" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🎯 Ma Devise : Adaptation-Motivation-Engagement</h6>
+                    <p>
+                        Dans le monde du développement, la polyvalence n'est pas juste un atout, c'est une nécessité. 
+                        Ma devise <strong>"Adaptation-Motivation-Engagement"</strong> guide chaque aspect de ma carrière 
+                        et de mes projets.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <div class="mb-3">
+                                    <span class="badge bg-primary p-3 rounded-circle">
+                                        <i class="fas fa-sync-alt fa-2x"></i>
+                                    </span>
+                                </div>
+                                <h6 class="text-primary">ADAPTATION</h6>
+                                <p class="small">Capacité à s'ajuster rapidement aux nouvelles technologies et contextes</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <div class="mb-3">
+                                    <span class="badge bg-success p-3 rounded-circle">
+                                        <i class="fas fa-fire fa-2x"></i>
+                                    </span>
+                                </div>
+                                <h6 class="text-success">MOTIVATION</h6>
+                                <p class="small">Passion constante pour apprendre et relever de nouveaux défis</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-center p-3 border rounded">
+                                <div class="mb-3">
+                                    <span class="badge bg-warning p-3 rounded-circle">
+                                        <i class="fas fa-handshake fa-2x text-dark"></i>
+                                    </span>
+                                </div>
+                                <h6 class="text-warning">ENGAGEMENT</h6>
+                                <p class="small">Dévouement total dans chaque projet et relation professionnelle</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary mt-4">🔄 L'Adaptation en Action</h6>
+                    <p>
+                        Mon parcours illustre parfaitement cette capacité d'adaptation :
+                    </p>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-content">
+                                <h6>Agent Stock chez SCC</h6>
+                                <p>Apprentissage des processus métier et identification des besoins terrain</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-primary"></div>
+                            <div class="timeline-content">
+                                <h6>Développement C# - MySCC</h6>
+                                <p>Transition vers le développement desktop avec WinForms</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-success"></div>
+                            <div class="timeline-content">
+                                <h6>Développement Web - MyStudent & PainPilote</h6>
+                                <p>Maîtrise des technologies web modernes (HTML5, CSS3, JS, Bootstrap)</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-warning"></div>
+                            <div class="timeline-content">
+                                <h6>E-commerce - DigitalMarket</h6>
+                                <p>Exploration des solutions e-commerce et paiements en ligne</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">🔥 La Motivation comme Moteur</h6>
+                    <blockquote class="blockquote">
+                        <p class="mb-0">"Le code est ma toile, l'innovation mon pinceau."</p>
+                        <footer class="blockquote-footer mt-2">Cette phrase résume ma passion</footer>
+                    </blockquote>
+                    
+                    <p>
+                        Chaque nouveau projet est une opportunité d'apprendre. Que ce soit :
+                    </p>
+                    
+                    <ul>
+                        <li><strong>Une nouvelle technologie</strong> : J'y plonge avec curiosité</li>
+                        <li><strong>Un domaine métier inconnu</strong> : Je m'immerge pour comprendre</li>
+                        <li><strong>Un défi technique</strong> : Je le vois comme un puzzle à résoudre</li>
+                        <li><strong>Une contrainte</strong> : Elle stimule ma créativité</li>
+                    </ul>
+                    
+                    <h6 class="text-primary">🤝 L'Engagement Total</h6>
+                    <p>
+                        Mon engagement se manifeste par :
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6>💼 Professionnellement</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-clock text-primary me-2"></i>Disponibilité 24/24</li>
+                                <li><i class="fas fa-quality text-success me-2"></i>Code de qualité production</li>
+                                <li><i class="fas fa-comments text-info me-2"></i>Communication transparente</li>
+                                <li><i class="fas fa-calendar-check text-warning me-2"></i>Respect des délais</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6>🎓 Personnellement</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-book text-primary me-2"></i>Formation continue</li>
+                                <li><i class="fab fa-github text-dark me-2"></i>Contribution open source</li>
+                                <li><i class="fas fa-users text-success me-2"></i>Partage de connaissances</li>
+                                <li><i class="fas fa-trophy text-warning me-2"></i>Excellence dans chaque détail</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">📊 Résultats Concrets</h6>
+                    <p>Cette approche m'a permis de :</p>
+                    
+                    <div class="row text-center">
+                        <div class="col-md-3">
+                            <div class="bg-primary text-white p-3 rounded">
+                                <h4>4</h4>
+                                <small>Projets majeurs</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-success text-white p-3 rounded">
+                                <h4>8+</h4>
+                                <small>Technologies maîtrisées</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-warning text-dark p-3 rounded">
+                                <h4>100%</h4>
+                                <small>Projets livrés</small>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="bg-info text-white p-3 rounded">
+                                <h4>95%</h4>
+                                <small>Satisfaction client</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary mt-4">🎯 Conseils pour les Développeurs</h6>
+                    <div class="alert alert-success">
+                        <h6><i class="fas fa-lightbulb me-2"></i>Mes Recommandations</h6>
+                        <ol>
+                            <li><strong>Sortez de votre zone de confort</strong> régulièrement</li>
+                            <li><strong>Écoutez vos utilisateurs</strong> avant tout</li>
+                            <li><strong>Documentez vos apprentissages</strong> pour les autres</li>
+                            <li><strong>Collaborez</strong> plutôt que de travailler en silo</li>
+                            <li><strong>Restez humble</strong> face à la technologie qui évolue</li>
+                        </ol>
+                    </div>
+                    
+                    <h6 class="text-primary">🚀 Vision d'Avenir</h6>
+                    <p>
+                        Ma polyvalence me permet d'envisager l'avenir avec confiance. 
+                        Que ce soit l'IA, la blockchain, le cloud, ou des technologies encore inconnues, 
+                        je suis prêt à m'adapter, apprendre et exceller.
+                    </p>
+                    
+                    <blockquote class="blockquote">
+                        <p class="mb-0">"Dans un monde en constante évolution, la polyvalence n'est pas un luxe, c'est une nécessité pour rester pertinent et créer de la valeur."</p>
+                        <footer class="blockquote-footer mt-2">Ma conviction profonde</footer>
+                    </blockquote>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <button type="button" class="btn btn-success">
+                        <i class="fas fa-handshake me-1"></i>Travaillons ensemble
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Blog 6 -->
+    <div class="modal fade" id="blogModal6" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fab fa-github me-2 text-dark"></i>Contribuer sur GitHub : Guide pour Débuter dans l'Open Source
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="blog-meta mb-3">
+                        <span class="badge bg-dark me-2">GitHub</span>
+                        <span class="badge bg-success me-2">Open Source</span>
+                        <span class="badge bg-info">Guide</span>
+                        <small class="text-muted ms-3">📅 10 Nov 2024 • ⏱️ 12 min de lecture</small>
+                    </div>
+                    
+                    <img src="https://images.pexels.com/photos/25626/pexels-photo.jpg?auto=compress&cs=tinysrgb&w=800" 
+                         alt="GitHub contribution" class="img-fluid rounded mb-4">
+                    
+                    <h6 class="text-primary">🌟 Pourquoi Contribuer à l'Open Source ?</h6>
+                    <p>
+                        Contribuer à l'open source a transformé ma carrière de développeur. C'est bien plus qu'écrire du code : 
+                        c'est rejoindre une communauté mondiale, apprendre des meilleurs, et donner en retour.
+                    </p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-success">✅ Avantages Personnels</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-brain text-info me-2"></i>Apprentissage accéléré</li>
+                                <li><i class="fas fa-users text-success me-2"></i>Réseau professionnel</li>
+                                <li><i class="fas fa-eye text-primary me-2"></i>Visibilité dans la communauté</li>
+                                <li><i class="fas fa-trophy text-warning me-2"></i>Portfolio enrichi</li>
+                                <li><i class="fas fa-handshake text-secondary me-2"></i>Opportunités d'emploi</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-primary">🌍 Impact Collectif</h6>
+                            <ul class="list-unstyled">
+                                <li><i class="fas fa-heart text-danger me-2"></i>Aider la communauté</li>
+                                <li><i class="fas fa-tools text-warning me-2"></i>Améliorer les outils existants</li>
+                                <li><i class="fas fa-bug text-info me-2"></i>Corriger des bugs</li>
+                                <li><i class="fas fa-book text-success me-2"></i>Améliorer la documentation</li>
+                                <li><i class="fas fa-rocket text-primary me-2"></i>Innover ensemble</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">🚀 Comment Commencer ?</h6>
+                    
+                    <h6>1. Choisir son Premier Projet</h6>
+                    <div class="alert alert-info">
+                        <i class="fas fa-lightbulb me-2"></i>
+                        <strong>Conseil :</strong> Commencez par des projets que vous utilisez déjà. 
+                        Vous connaissez leurs forces et faiblesses !
+                    </div>
+                    
+                    <p>Recherchez des projets avec ces labels :</p>
+                    <div class="mb-3">
+                        <span class="badge bg-success me-2">good first issue</span>
+                        <span class="badge bg-info me-2">beginner-friendly</span>
+                        <span class="badge bg-warning text-dark me-2">help wanted</span>
+                        <span class="badge bg-primary me-2">documentation</span>
+                    </div>
+                    
+                    <h6>2. Types de Contributions</h6>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <h6 class="text-success">🔧 Contributions Techniques</h6>
+                            <ul>
+                                <li>Correction de bugs</li>
+                                <li>Nouvelles fonctionnalités</li>
+                                <li>Optimisations de performance</li>
+                                <li>Tests unitaires</li>
+                                <li>Refactoring de code</li>
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <h6 class="text-info">📝 Contributions Non-Techniques</h6>
+                            <ul>
+                                <li>Amélioration de la documentation</li>
+                                <li>Traductions</li>
+                                <li>Rapports de bugs détaillés</li>
+                                <li>Exemples d'utilisation</li>
+                                <li>Design et UX</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">📋 Processus de Contribution</h6>
+                    
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-primary"></div>
+                            <div class="timeline-content">
+                                <h6>1. Fork du Projet</h6>
+                                <p>Créez votre copie du repository</p>
+                                <code>git clone https://github.com/votre-username/projet.git</code>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-info"></div>
+                            <div class="timeline-content">
+                                <h6>2. Créer une Branche</h6>
+                                <p>Travaillez sur une branche dédiée</p>
+                                <code>git checkout -b feature/ma-nouvelle-fonctionnalite</code>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-success"></div>
+                            <div class="timeline-content">
+                                <h6>3. Développer et Tester</h6>
+                                <p>Implémentez votre solution avec des tests</p>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-marker bg-warning"></div>
+                            <div class="timeline-content">
+                                <h6>4. Pull Request</h6>
+                                <p>Proposez vos changements à la communauté</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">✍️ Rédiger une Bonne Pull Request</h6>
+                    
+                    <pre class="bg-light p-3 rounded"><code>## Description
+Brève description de ce que fait cette PR
+
+## Type de changement
+- [ ] Bug fix
+- [x] Nouvelle fonctionnalité
+- [ ] Breaking change
+- [ ] Documentation
+
+## Tests
+- [x] Tests unitaires ajoutés
+- [x] Tests manuels effectués
+
+## Checklist
+- [x] Code respecte les conventions du projet
+- [x] Documentation mise à jour
+- [x] Pas de conflits avec main</code></pre>
+                    
+                    <h6 class="text-primary">🎯 Mes Contributions Personnelles</h6>
+                    <p>Voici quelques exemples de mes contributions :</p>
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 mb-2">
+                                <h6 class="text-primary">Bootstrap-Icons</h6>
+                                <p class="small mb-1">Ajout de nouvelles icônes pour les applications métier</p>
+                                <span class="badge bg-success">Merged</span>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="border rounded p-3 mb-2">
+                                <h6 class="text-primary">Chart.js</h6>
+                                <p class="small mb-1">Correction bug d'affichage sur mobile</p>
+                                <span class="badge bg-success">Merged</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <h6 class="text-primary">⚠️ Erreurs à Éviter</h6>
+                    <div class="alert alert-warning">
+                        <h6>❌ Pièges Courants</h6>
+                        <ul class="mb-0">
+                            <li><strong>PR trop volumineuse</strong> : Divisez en petites contributions</li>
+                            <li><strong>Pas de tests</strong> : Toujours tester vos changements</li>
+                            <li><strong>Description vague</strong> : Expliquez clairement le "pourquoi"</li>
+                            <li><strong>Ignorer les conventions</strong> : Lisez le CONTRIBUTING.md</li>
+                            <li><strong>Prendre les rejets personnellement</strong> : C'est un processus d'apprentissage</li>
+                        </ul>
+                    </div>
+                    
+                    <h6 class="text-primary">🏆 Construire sa Réputation</h6>
+                    <div class="row text-center">
+                        <div class="col-md-4">
+                            <div class="bg-light p-3 rounded">
+                                <i class="fas fa-code-branch fa-2x text-primary mb-2"></i>
+                                <h6>Consistance</h6>
+                                <p class="small">Contributions régulières</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="bg-light p-3 rounded">
+                                <i class="fas fa-star fa-2x text-warning mb-2"></i>
+                                <h6>Qualité</h6>
+                                <p class="small">Code propre et testé</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="bg-light p-3 rounded">
+                                <i class="fas fa-comments fa-2x text-success mb-2"></i>
+                                <h6>Communication</h6>
+                                <p class="small">Échanges constructifs</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <blockquote class="blockquote mt-4">
+                        <p class="mb-0">"L'open source m'a appris que le développement est avant tout une activité collaborative. Chaque contribution, même petite, compte."</p>
+                        <footer class="blockquote-footer mt-2">Mon expérience GitHub</footer>
+                    </blockquote>
+                    
+                    <h6 class="text-primary">🎯 Prochaines Étapes</h6>
+                    <p>
+                        Prêt à commencer ? Voici votre plan d'action :
+                    </p>
+                    <ol>
+                        <li>Créez un compte GitHub si ce n'est pas fait</li>
+                        <li>Explorez des projets dans vos technologies préférées</li>
+                        <li>Commencez par améliorer la documentation</li>
+                        <li>Rejoignez les discussions dans les issues</li>
+                        <li>Proposez votre première pull request</li>
+                    </ol>
+                    
+                    <div class="alert alert-success">
+                        <i class="fas fa-rocket me-2"></i>
+                        <strong>Challenge :</strong> Faites votre première contribution cette semaine ! 
+                        Même corriger une faute de frappe dans un README compte.
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="https://github.com/wilfred-djikiakam" class="btn btn-dark" target="_blank">
+                        <i class="fab fa-github me-1"></i>Voir mon GitHub
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- Script personnalisé -->
     <script src="script.js"></script>
 </body>
 </html>
