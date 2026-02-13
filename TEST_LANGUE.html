@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Système de Langue - RESPOCODEUR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card border-success">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-language me-2"></i>Test Système Multilingue
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h6><i class="fas fa-check-circle me-2"></i>Vérification du Système de Langue</h6>
+                            <p class="mb-0">Ce test vérifie que le changement de langue fonctionne correctement sur le site principal.</p>
+                        </div>
+
+                        <h5 class="mt-4">
+                            <i class="fas fa-globe me-2"></i>1️⃣ Test Changement de Langue
+                        </h5>
+                        <div class="list-group mb-3">
+                            <a href="index.html" target="_blank" class="list-group-item list-group-item-action">
+                                <i class="fas fa-external-link-alt me-2"></i>
+                                <strong>Ouvrir la page principale</strong>
+                                <span class="badge bg-primary float-end">Nouvelle fenêtre</span>
+                            </a>
+                        </div>
+
+                        <div class="alert alert-warning mt-4">
+                            <h6><i class="fas fa-check me-2"></i>Checklist de Test</h6>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test1">
+                                <label class="form-check-label" for="test1">
+                                    Modale "Choisir une langue" s'affiche au premier chargement
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test2">
+                                <label class="form-check-label" for="test2">
+                                    Cliquer 🇬🇧 English change <strong>TOUT</strong> en anglais
+                                    <ul class="mt-2" style="font-size: 0.9em;">
+                                        <li>"Accueil" → "Home"</li>
+                                        <li>"À propos" → "About"</li>
+                                        <li>"Cours" → "Courses"</li>
+                                        <li>"Se connecter" → "Sign In"</li>
+                                    </ul>
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test3">
+                                <label class="form-check-label" for="test3">
+                                    Le drapeau 🇬🇧 devient actif (opacité normale)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test4">
+                                <label class="form-check-label" for="test4">
+                                    Le drapeau 🇫🇷 devient inactif (opacity 0.4)
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test5">
+                                <label class="form-check-label" for="test5">
+                                    Cliquer 🇫🇷 Français revient à la langue FR
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test6">
+                                <label class="form-check-label" for="test6">
+                                    F5 (recharger) → pas de modale, langue persistée
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test7">
+                                <label class="form-check-label" for="test7">
+                                    Navbar est PROPRE: éléments bien alignés, pas de chevauchement
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="test8">
+                                <label class="form-check-label" for="test8">
+                                    Sur mobile (F12 → mode responsive): menu s'adapte correctement
+                                </label>
+                            </div>
+                        </div>
+
+                        <div class="alert alert-success mt-4">
+                            <h6><i class="fas fa-keyboard me-2"></i>Raccourcis Clavier</h6>
+                            <ul class="mb-0">
+                                <li><code>F12</code> → Ouvrir DevTools (Console)</li>
+                                <li><code>Ctrl+Shift+M</code> → Mode responsive (mobile)</li>
+                                <li><code>F5</code> → Recharger la page</li>
+                                <li><code>Ctrl+Shift+Del</code> → Effacer localStorage</li>
+                            </ul>
+                        </div>
+
+                        <div class="alert alert-info mt-4">
+                            <h6><i class="fas fa-bug me-2"></i>Vérifications Console (F12)</h6>
+                            <p class="mb-2"><strong>Tapez dans la console:</strong></p>
+                            <code class="d-block p-2 bg-white border rounded mb-2">getLanguage()</code>
+                            <small>Doit retourner: "fr" ou "en"</small>
+                            
+                            <code class="d-block p-2 bg-white border rounded mb-2">localStorage.appLanguage</code>
+                            <small>Doit retourner: "fr" ou "en"</small>
+                            
+                            <code class="d-block p-2 bg-white border rounded mb-2">localStorage.appVisited</code>
+                            <small>Doit retourner: "true"</small>
+                            
+                            <code class="d-block p-2 bg-white border rounded mb-2">translate('nav.home')</code>
+                            <small>Doit retourner: "Accueil" ou "Home" selon la langue</small>
+                        </div>
+
+                        <div class="alert alert-danger mt-4">
+                            <h6><i class="fas fa-info-circle me-2"></i>Si le test échoue</h6>
+                            <ol class="mb-0">
+                                <li>Vérifier que language-system.js est chargé AVANT login-system.js</li>
+                                <li>Vérifier qu'il n'y a pas d'erreurs dans la console (F12)</li>
+                                <li>Effacer localStorage: <code>localStorage.clear()</code> en console</li>
+                                <li>Recharger la page: F5</li>
+                                <li>Vérifier que la modale "Choisir une langue" apparaît</li>
+                            </ol>
+                        </div>
+
+                        <h5 class="mt-4">
+                            <i class="fas fa-link me-2"></i>Lien Rapid Accès
+                        </h5>
+                        <a href="index.html" class="btn btn-primary me-2">
+                            <i class="fas fa-globe me-2"></i>Aller au site principal
+                        </a>
+                        <a href="LANGUE_NAVBAR_FIXED.txt" class="btn btn-info">
+                            <i class="fas fa-file-alt me-2"></i>Documentation complète
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Enregistrer les résultats des tests
+        document.querySelectorAll('.form-check-input').forEach(checkbox => {
+            checkbox.addEventListener('change', () => {
+                const checkedCount = document.querySelectorAll('.form-check-input:checked').length;
+                const totalCount = document.querySelectorAll('.form-check-input').length;
+                console.log(`Tests passés: ${checkedCount}/${totalCount}`);
+                
+                if (checkedCount === totalCount) {
+                    alert('✅ Tous les tests sont passés! Le système multilingue fonctionne parfaitement.');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
