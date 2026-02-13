@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Système de Cours - RESPOCODEUR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-light">
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-8 offset-lg-2">
+                <div class="card border-success">
+                    <div class="card-header bg-success text-white">
+                        <h4 class="mb-0">
+                            <i class="fas fa-flask me-2"></i>Test Système de Cours Intégré
+                        </h4>
+                    </div>
+                    <div class="card-body">
+                        <div class="alert alert-info">
+                            <h6>✅ Vérification des Fonctionnalités</h6>
+                            <p class="mb-0">Ce test vérifie que le système de cours fonctionne correctement avec accès immédiat après inscription.</p>
+                        </div>
+
+                        <h5 class="mt-4">1️⃣ Test Cours Gratuits</h5>
+                        <div class="list-group mb-3">
+                            <button type="button" class="list-group-item list-group-item-action text-start" onclick="testFreeCourse('Introduction Programmation')">
+                                <i class="fas fa-laptop-code me-2"></i>Introduction à la Programmation
+                                <span class="badge bg-success float-end">GRATUIT</span>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action text-start" onclick="testFreeCourse('HTML5 CSS3 Bases')">
+                                <i class="fas fa-globe me-2"></i>HTML5 & CSS3 - Bases
+                                <span class="badge bg-success float-end">GRATUIT</span>
+                            </button>
+                            <button type="button" class="list-group-item list-group-item-action text-start" onclick="testFreeCourse('Fondamentaux Reseaux')">
+                                <i class="fas fa-network-wired me-2"></i>Fondamentaux Réseaux
+                                <span class="badge bg-success float-end">GRATUIT</span>
+                            </button>
+                        </div>
+
+                        <h5 class="mt-4">2️⃣ Test Formations Payantes</h5>
+                        <div class="list-group mb-3">
+                            <button type="button" class="list-group-item list-group-item-action text-start" onclick="testPaidCourse('Developpement Web Complet', 55000)">
+                                <i class="fas fa-globe me-2"></i>Développement Web Complet
+                                <span class="badge bg-warning text-dark float-end">55,000 FCFA</span>
+                            </button>
+                        </div>
+
+                        <h5 class="mt-4">3️⃣ État du Système</h5>
+                        <div id="systemStatus" class="alert alert-secondary">
+                            <h6>Vérification...</h6>
+                            <ul class="mb-0">
+                                <li><span id="status-db">⏳</span> Base de données des cours</li>
+                                <li><span id="status-storage">⏳</span> LocalStorage disponible</li>
+                                <li><span id="status-jspdf">⏳</span> jsPDF disponible</li>
+                                <li><span id="status-bootstrap">⏳</span> Bootstrap disponible</li>
+                            </ul>
+                        </div>
+
+                        <h5 class="mt-4">4️⃣ Inscriptions Enregistrées</h5>
+                        <div id="enrollmentsList" class="alert alert-info">
+                            <h6>Aucune inscription pour le moment</h6>
+                        </div>
+
+                        <div class="alert alert-warning mt-4">
+                            <h6><i class="fas fa-info-circle me-2"></i>Comment ça Fonctionne</h6>
+                            <ol class="mb-0">
+                                <li>Cliquez sur un cours (gratuit ou payant)</li>
+                                <li>Remplissez le formulaire d'inscription</li>
+                                <li>Pour les cours gratuits → Accès immédiat au contenu</li>
+                                <li>Pour les formations payantes → Paiement Mobile Money + PDF reçu + Accès immédiat</li>
+                                <li>Le contenu du cours s'affiche dans votre navigateur</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="courses-content.js"></script>
+    <script src="script.js"></script>
+
+    <script>
+        // Vérifier l'état du système
+        function checkSystemStatus() {
+            // Base de données
+            document.getElementById('status-db').innerHTML = (typeof coursesDatabase !== 'undefined') ? '✅' : '❌';
+            
+            // localStorage
+            try {
+                localStorage.setItem('test', 'test');
+                localStorage.removeItem('test');
+                document.getElementById('status-storage').innerHTML = '✅';
+            } catch(e) {
+                document.getElementById('status-storage').innerHTML = '❌';
+            }
+            
+            // jsPDF
+            document.getElementById('status-jspdf').innerHTML = (typeof jspdf !== 'undefined') ? '✅' : '❌';
+            
+            // Bootstrap
+            document.getElementById('status-bootstrap').innerHTML = (typeof bootstrap !== 'undefined') ? '✅' : '❌';
+            
+            // Afficher les inscriptions
+            updateEnrollmentsList();
+        }
+
+        function updateEnrollmentsList() {
+            const enrollments = JSON.parse(localStorage.getItem('enrollments') || '[]');
+            const paidEnrollments = JSON.parse(localStorage.getItem('paidEnrollments') || '[]');
+            const all = [...enrollments, ...paidEnrollments];
+
+            if (all.length === 0) {
+                document.getElementById('enrollmentsList').innerHTML = '<h6>Aucune inscription pour le moment</h6>';
+            } else {
+                let html = '<h6>Inscriptions Enregistrées:</h6><ul class="mb-0">';
+                all.forEach(e => {
+                    html += `<li>
+                        <strong>${e.studentName || e.fullName}</strong> - ${e.courseName}
+                        ${e.price ? `<span class="badge bg-warning">${e.price.toLocaleString('fr-CM')} FCFA</span>` : '<span class="badge bg-success">Gratuit</span>'}
+                    </li>`;
+                });
+                html += '</ul>';
+                document.getElementById('enrollmentsList').innerHTML = html;
+            }
+        }
+
+        function testFreeCourse(courseName) {
+            console.log('Test cours gratuit:', courseName);
+            // Appeler la fonction d'inscription
+            if (typeof enrollCourse === 'function') {
+                enrollCourse(courseName, 'free');
+            }
+        }
+
+        function testPaidCourse(courseName, price) {
+            console.log('Test cours payant:', courseName, price);
+            // Appeler la fonction de paiement
+            if (typeof enrollPaidCourse === 'function') {
+                enrollPaidCourse(courseName, price);
+            }
+        }
+
+        // Vérifier l'état au chargement
+        window.addEventListener('load', checkSystemStatus);
+    </script>
+</body>
+</html>
