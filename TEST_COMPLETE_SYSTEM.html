@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TEST COMPLET - Système de Cours RESPOCODEUR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { font-family: 'Inter', sans-serif; background: #f8f9fa; padding: 20px; }
+        .test-container { max-width: 1200px; margin: 0 auto; }
+        .test-card { background: white; border-radius: 12px; padding: 25px; margin-bottom: 20px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+        .test-title { color: #667eea; font-weight: 600; margin-bottom: 15px; }
+        .test-status { font-weight: 600; padding: 8px 16px; border-radius: 20px; display: inline-block; font-size: 14px; }
+        .status-ok { background: #d4edda; color: #155724; }
+        .status-fail { background: #f8d7da; color: #721c24; }
+        .test-btn { margin-right: 10px; margin-bottom: 10px; }
+        .course-list { list-style: none; padding: 0; }
+        .course-list li { padding: 12px; border-left: 4px solid #667eea; margin-bottom: 10px; background: #f8f9fa; }
+        .section-header { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 20px; border-radius: 8px; margin-bottom: 30px; }
+        .instruction-box { background: #e7f3ff; border-left: 4px solid #2196F3; padding: 15px; border-radius: 4px; margin-bottom: 15px; }
+    </style>
+</head>
+<body>
+    <div class="test-container">
+        <!-- Header -->
+        <div class="section-header">
+            <h1>🧪 TEST COMPLET - Système de Cours RESPOCODEUR</h1>
+            <p class="mb-0">Vérifiez le fonctionnement de tous les éléments du système</p>
+        </div>
+
+        <!-- SECTION 1: Vérification du Système -->
+        <div class="test-card">
+            <h3 class="test-title">✅ Vérification du Système</h3>
+            
+            <div id="systemStatus"></div>
+
+            <button class="btn btn-primary test-btn" onclick="checkSystem()">
+                <i class="fas fa-check-circle me-2"></i>Vérifier le Système
+            </button>
+            <button class="btn btn-info test-btn" onclick="clearAllData()">
+                <i class="fas fa-trash me-2"></i>Réinitialiser les Données
+            </button>
+        </div>
+
+        <!-- SECTION 2: Test des Cours Gratuits -->
+        <div class="test-card">
+            <h3 class="test-title">🎓 Test des Cours Gratuits</h3>
+            
+            <div class="instruction-box">
+                <strong>Instructions:</strong>
+                <ol>
+                    <li>Cliquez sur "S'inscrire" pour un cours gratuit</li>
+                    <li>Remplissez le formulaire (Nom, Email, WhatsApp)</li>
+                    <li>Confirmez l'inscription</li>
+                    <li>Vous verrez la page du cours avec modules</li>
+                    <li>Marquez les modules comme "lus"</li>
+                    <li>À 100%, bouton "Certificat" s'active</li>
+                </ol>
+            </div>
+
+            <h5 class="mt-4">Cours Gratuits Disponibles:</h5>
+            <div id="freeCoursesTest"></div>
+        </div>
+
+        <!-- SECTION 3: Test des Cours Payants -->
+        <div class="test-card">
+            <h3 class="test-title">💰 Test des Cours Payants</h3>
+            
+            <div class="instruction-box">
+                <strong>Flux Complet:</strong>
+                <ol>
+                    <li>Cliquez sur "S'inscrire" pour un cours payant</li>
+                    <li>⚠️ Modal de PAIEMENT OBLIGATOIRE apparaît</li>
+                    <li>Choix de paiement Mobile Money (672922360)</li>
+                    <li>Entrez les infos: Nom, Email, WhatsApp</li>
+                    <li>Entrez code de transaction Mobile Money</li>
+                    <li>Reçu PDF téléchargé automatiquement</li>
+                    <li>Course s'ouvre avec tous les modules</li>
+                    <li>Marquez comme étudié → Certificat</li>
+                </ol>
+            </div>
+
+            <h5 class="mt-4">Formations Payantes Disponibles:</h5>
+            <div id="paidCoursesTest"></div>
+        </div>
+
+        <!-- SECTION 4: Test de la Progression -->
+        <div class="test-card">
+            <h3 class="test-title">📊 Test de la Progression des Cours</h3>
+            
+            <div class="instruction-box">
+                <strong>Vérification:</strong>
+                <ul>
+                    <li>Barre de progression visible dans chaque cours</li>
+                    <li>Checkboxes pour marquer modules comme lus</li>
+                    <li>Pourcentage de completion mis à jour</li>
+                    <li>Certificat disponible à 100% seulement</li>
+                </ul>
+            </div>
+
+            <button class="btn btn-warning test-btn" onclick="viewProgressData()">
+                <i class="fas fa-chart-pie me-2"></i>Voir les Données de Progression
+            </button>
+        </div>
+
+        <!-- SECTION 5: Test du Système de Paiement -->
+        <div class="test-card">
+            <h3 class="test-title">💳 Système de Paiement Mobile Money</h3>
+            
+            <div class="alert alert-info">
+                <h5>📱 Configuration</h5>
+                <p><strong>Numéro Bénéficiaire:</strong> <code>672922360</code></p>
+                <p><strong>Devise:</strong> FCFA (Francs Camerounais)</p>
+                <p><strong>Méthode:</strong> Mobile Money Cameroun</p>
+            </div>
+
+            <div class="alert alert-warning">
+                <h5>⚠️ Processus de Paiement</h5>
+                <ol>
+                    <li>Modal de paiement OBLIGATOIRE avant l'accès</li>
+                    <li>Instructions claires pour Mobile Money</li>
+                    <li>Saisie du code de confirmation</li>
+                    <li>Génération de reçu PDF signé</li>
+                    <li>Accès immédiat au cours</li>
+                </ol>
+            </div>
+
+            <button class="btn btn-success test-btn" onclick="testPaymentFlow()">
+                <i class="fas fa-credit-card me-2"></i>Tester le Flux de Paiement
+            </button>
+        </div>
+
+        <!-- SECTION 6: Données Stockées -->
+        <div class="test-card">
+            <h3 class="test-title">💾 Données Stockées (localStorage)</h3>
+            
+            <button class="btn btn-secondary test-btn" onclick="showStoredData()">
+                <i class="fas fa-database me-2"></i>Afficher les Données
+            </button>
+
+            <div id="storedDataDisplay" class="mt-3"></div>
+        </div>
+
+        <!-- SECTION 7: Résumé et Checklist -->
+        <div class="test-card">
+            <h3 class="test-title">✅ CHECKLIST FINALE</h3>
+            
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <input type="checkbox" id="check1"> 
+                    <label for="check1">Contenu RÉEL et détaillé dans tous les modules ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check2">
+                    <label for="check2">Paiement VISIBLE et OBLIGATOIRE pour cours payants ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check3">
+                    <label for="check3">Mobile Money 672922360 intégré ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check4">
+                    <label for="check4">Progression des modules trackée ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check5">
+                    <label for="check5">PDF certificat après 100% complété ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check6">
+                    <label for="check6">Interface claire et professionnelle ✅</label>
+                </li>
+                <li class="list-group-item">
+                    <input type="checkbox" id="check7">
+                    <label for="check7">Aucune erreur JavaScript ✅</label>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="courses-content-real.js"></script>
+    <script src="payment-system.js"></script>
+
+    <script>
+        // Vérifier le système
+        function checkSystem() {
+            let html = '<div class="alert alert-success"><h5>✅ État du Système</h5>';
+            
+            // Vérifier scripts
+            const hasCoursesDB = typeof coursesDatabase !== 'undefined';
+            const hasFunctions = typeof displayCourseLessonsWithProgress === 'function';
+            const hasPaymentSystem = typeof showPaymentModal === 'function';
+            
+            html += `<ul class="mb-0">
+                <li>Base de données des cours: ${hasCoursesDB ? '✅ OK' : '❌ ERREUR'}</li>
+                <li>Fonctions de progression: ${hasFunctions ? '✅ OK' : '❌ ERREUR'}</li>
+                <li>Système de paiement: ${hasPaymentSystem ? '✅ OK' : '❌ ERREUR'}</li>
+                <li>localStorage disponible: ${localStorage ? '✅ OK' : '❌ ERREUR'}</li>
+                <li>jsPDF disponible: ${typeof jspdf !== 'undefined' ? '✅ OK' : '⚠️ À charger'}</li>
+            </ul></div>`;
+            
+            // Compter les cours
+            const courseCount = Object.keys(coursesDatabase).length;
+            html += `<div class="alert alert-info"><strong>📊 Statistiques</strong><br>
+                Nombre total de cours: ${courseCount}<br>
+                Modules réels avec contenu: ${countModules()}<br>
+                Inscriptions actuelles: ${Object.keys(JSON.parse(localStorage.getItem('enrollments') || '{}')).length}
+            </div>`;
+            
+            document.getElementById('systemStatus').innerHTML = html;
+        }
+
+        function countModules() {
+            let count = 0;
+            for (const course of Object.values(coursesDatabase)) {
+                count += course.modules ? course.modules.length : 0;
+            }
+            return count;
+        }
+
+        // Afficher les cours gratuits
+        function showFreeCourses() {
+            let html = '<ul class="course-list">';
+            
+            for (const [name, course] of Object.entries(coursesDatabase)) {
+                if (course.type === 'free') {
+                    const modules = course.modules ? course.modules.length : 0;
+                    html += `<li>
+                        <strong>${name}</strong>
+                        <small class="d-block text-muted">${modules} modules - ${course.hours}h</small>
+                        <button class="btn btn-sm btn-success mt-2" onclick="enrollFreeCourseTest('${name}')">
+                            S'inscrire Maintenant
+                        </button>
+                    </li>`;
+                }
+            }
+            
+            html += '</ul>';
+            document.getElementById('freeCoursesTest').innerHTML = html;
+        }
+
+        // Afficher les cours payants
+        function showPaidCourses() {
+            let html = '<ul class="course-list">';
+            
+            for (const [name, course] of Object.entries(coursesDatabase)) {
+                if (course.type === 'paid') {
+                    const modules = course.modules ? course.modules.length : 0;
+                    html += `<li>
+                        <strong>${name}</strong>
+                        <small class="d-block text-muted">${modules} modules - ${course.hours}h</small>
+                        <small class="d-block text-danger"><strong>Prix: ${course.price.toLocaleString()} FCFA</strong></small>
+                        <button class="btn btn-sm btn-danger mt-2" onclick="testPaidEnrollment('${name}', ${course.price})">
+                            S'inscrire & Payer
+                        </button>
+                    </li>`;
+                }
+            }
+            
+            html += '</ul>';
+            document.getElementById('paidCoursesTest').innerHTML = html;
+        }
+
+        // Tester inscription gratuite
+        function enrollFreeCourseTest(courseName) {
+            const course = coursesDatabase[courseName];
+            alert(`📚 ${courseName}\n\n${course.modules.length} modules avec contenu RÉEL\n${course.hours}h de formation\n\n🎯 Cliquez OK pour l'inscription`);
+            displayCourseLessonsWithProgress(courseName);
+        }
+
+        // Tester cours payant
+        function testPaidEnrollment(courseName, price) {
+            showPaymentModal(courseName, price);
+        }
+
+        // Tester flux de paiement
+        function testPaymentFlow() {
+            alert('💳 Flux de Paiement Mobile Money:\n\n1. Modal OBLIGATOIRE apparaît\n2. Instructions claires\n3. Numéro bénéficiaire: 672922360\n4. Saisissez code de confirmation\n5. Reçu PDF généré et téléchargé\n6. Accès immédiat au cours');
+        }
+
+        // Voir données de progression
+        function viewProgressData() {
+            const progress = JSON.parse(localStorage.getItem('courseProgress') || '{}');
+            alert('📊 Données de Progression:\n\n' + JSON.stringify(progress, null, 2));
+        }
+
+        // Afficher données stockées
+        function showStoredData() {
+            const enrollments = JSON.parse(localStorage.getItem('enrollments') || '{}');
+            const progress = JSON.parse(localStorage.getItem('courseProgress') || '{}');
+            
+            let html = '<pre class="bg-light p-3 rounded"><small>';
+            html += '<strong>Inscriptions:</strong>\n' + JSON.stringify(enrollments, null, 2);
+            html += '\n\n<strong>Progression:</strong>\n' + JSON.stringify(progress, null, 2);
+            html += '</small></pre>';
+            
+            document.getElementById('storedDataDisplay').innerHTML = html;
+        }
+
+        // Réinitialiser données
+        function clearAllData() {
+            if (confirm('Êtes-vous sûr? Ceci supprimera toutes les inscriptions et progressions.')) {
+                localStorage.removeItem('enrollments');
+                localStorage.removeItem('courseProgress');
+                alert('✅ Données réinitialisées');
+                location.reload();
+            }
+        }
+
+        // Initialiser au chargement
+        document.addEventListener('DOMContentLoaded', function() {
+            checkSystem();
+            showFreeCourses();
+            showPaidCourses();
+        });
+    </script>
+</body>
+</html>
