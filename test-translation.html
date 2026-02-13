@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Test Translation System</title>
+    <style>
+        body { font-family: Arial; padding: 20px; background: #f5f5f5; }
+        .test-section { background: white; padding: 20px; margin: 10px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1); }
+        .success { color: green; font-weight: bold; }
+        .error { color: red; font-weight: bold; }
+        .test-item { margin: 10px 0; padding: 10px; background: #f9f9f9; border-left: 4px solid #667eea; }
+        pre { background: #f0f0f0; padding: 10px; overflow-x: auto; }
+    </style>
+</head>
+<body>
+    <h1>🧪 Test du Système de Traduction RESPOCODEUR</h1>
+    
+    <div class="test-section">
+        <h2>Statut du Système</h2>
+        <div id="status"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Clés de Traduction Testées</h2>
+        <div id="keys-test"></div>
+    </div>
+
+    <div class="test-section">
+        <h2>Langue Actuelle</h2>
+        <p>Langue: <strong id="current-lang">Chargement...</strong></p>
+        <button onclick="testLanguageSwitch('fr')">Switch to FR 🇫🇷</button>
+        <button onclick="testLanguageSwitch('en')">Switch to EN 🇬🇧</button>
+    </div>
+
+    <div class="test-section">
+        <h2>Éléments HTML avec data-translate</h2>
+        <div id="html-elements"></div>
+    </div>
+
+    <script src="language-system.js"></script>
+    <script>
+        // Test 1: Vérifier que le système est chargé
+        function runTests() {
+            let status = '<div class="test-item">';
+            
+            // Test translations object
+            if (typeof translations !== 'undefined') {
+                status += '<span class="success">✅ Object translations existe</span><br>';
+            } else {
+                status += '<span class="error">❌ Object translations manquant</span><br>';
+            }
+            
+            // Test currentLanguage
+            if (typeof currentLanguage !== 'undefined') {
+                status += `<span class="success">✅ currentLanguage = "${currentLanguage}"</span><br>`;
+            } else {
+                status += '<span class="error">❌ currentLanguage manquant</span><br>';
+            }
+            
+            // Test translate function
+            if (typeof translate === 'function') {
+                status += '<span class="success">✅ Fonction translate() existe</span><br>';
+            } else {
+                status += '<span class="error">❌ Fonction translate() manquante</span><br>';
+            }
+            
+            // Test updatePageLanguage function
+            if (typeof updatePageLanguage === 'function') {
+                status += '<span class="success">✅ Fonction updatePageLanguage() existe</span><br>';
+            } else {
+                status += '<span class="error">❌ Fonction updatePageLanguage() manquante</span><br>';
+            }
+            
+            status += '</div>';
+            document.getElementById('status').innerHTML = status;
+            
+            // Test some keys
+            testTranslationKeys();
+            testHTMLElements();
+            updateLanguageDisplay();
+        }
+        
+        function testTranslationKeys() {
+            const keysToTest = [
+                'nav.home',
+                'nav.about',
+                'home.greeting',
+                'home.role',
+                'about.title',
+                'courses.title',
+                'contact.title'
+            ];
+            
+            let html = '';
+            keysToTest.forEach(key => {
+                const fr = translate(key);
+                const enValue = translations['en']?.[key.split('.')[0]]?.[key.split('.')[1]] || 'N/A';
+                html += `<div class="test-item">
+                    <strong>${key}</strong>:<br>
+                    FR: "${fr}"<br>
+                    EN: "${enValue}"
+                </div>`;
+            });
+            
+            document.getElementById('keys-test').innerHTML = html;
+        }
+        
+        function testHTMLElements() {
+            const elements = document.querySelectorAll('[data-translate]');
+            let html = `<div class="test-item">Trouvé <strong>${elements.length}</strong> éléments avec data-translate</div>`;
+            
+            // Montrer les premiers 5
+            let count = 0;
+            elements.forEach(el => {
+                if (count < 5) {
+                    const key = el.getAttribute('data-translate');
+                    const text = el.textContent || el.placeholder || el.value;
+                    html += `<div class="test-item">
+                        <strong>${key}</strong>: "${text}"
+                    </div>`;
+                    count++;
+                }
+            });
+            
+            document.getElementById('html-elements').innerHTML = html;
+        }
+        
+        function updateLanguageDisplay() {
+            document.getElementById('current-lang').textContent = currentLanguage.toUpperCase();
+        }
+        
+        function testLanguageSwitch(lang) {
+            console.log(`Switching to ${lang}...`);
+            if (typeof setLanguage === 'function') {
+                setLanguage(lang);
+                updateLanguageDisplay();
+                testTranslationKeys();
+                alert(`✅ Langue changée en ${lang.toUpperCase()}`);
+            } else {
+                alert('❌ Fonction setLanguage() non trouvée');
+            }
+        }
+        
+        // Exécuter les tests quand la page est chargée
+        document.addEventListener('DOMContentLoaded', runTests);
+        
+        // Fallback si DOMContentLoaded a déjà été déclenché
+        if (document.readyState === 'interactive' || document.readyState === 'complete') {
+            runTests();
+        }
+    </script>
+</body>
+</html>
