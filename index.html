@@ -14,6 +14,129 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <!-- CSS personnalisé -->
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- MASQUER TOUS LES DATA-TRANSLATE POUR ÉVITER LES CLÉS BRUTES -->
+    <style>
+        [data-translate]:empty,
+        [data-translate="nav.home"],
+        [data-translate="nav.about"],
+        [data-translate="nav.courses"],
+        [data-translate="nav.portfolio"],
+        [data-translate="nav.blog"],
+        [data-translate="nav.contact"],
+        [data-translate="home.greeting"],
+        [data-translate="home.role"],
+        [data-translate="home.description"],
+        [data-translate="about.title"],
+        [data-translate="about.subtitle"],
+        [data-translate="courses.title"],
+        [data-translate="courses.location"],
+        [data-translate="courses.description"],
+        [data-translate="portfolio.title"],
+        [data-translate="portfolio.subtitle"],
+        [data-translate="blog.title"],
+        [data-translate="blog.subtitle"],
+        [data-translate="contact.title"],
+        [data-translate="contact.subtitle"] {
+            display: none !important;
+        }
+    </style>
+    
+    <!-- Selecteur Langue et Login CSS -->
+    <style>
+        .navbar {
+            padding: 0.75rem 0;
+        }
+        
+        .navbar-brand {
+            font-weight: 700;
+            text-decoration: none;
+        }
+        
+        .navbar-brand .slogan {
+            font-size: 0.75rem;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .logo-placeholder {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.2rem;
+        }
+        
+        .language-selector-container {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-right: 8px;
+        }
+        
+        .lang-flag {
+            cursor: pointer;
+            font-size: 1.3em;
+            transition: all 0.3s ease;
+            padding: 4px;
+            border-radius: 4px;
+        }
+        
+        .lang-flag:hover {
+            transform: scale(1.15);
+            background-color: rgba(102, 126, 234, 0.1);
+        }
+        
+        .lang-flag.active {
+            opacity: 1;
+            transform: scale(1.1);
+        }
+        
+        .lang-flag.inactive {
+            opacity: 0.4;
+        }
+        
+        .navbar .dropdown-menu {
+            min-width: 200px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        }
+        
+        .navbar .btn-sm {
+            padding: 6px 12px;
+            font-size: 0.875rem;
+        }
+        
+        /* Responsive */
+        @media (max-width: 992px) {
+            .navbar-collapse {
+                margin-top: 1rem;
+                border-top: 1px solid #e9ecef;
+                padding-top: 1rem;
+            }
+            
+            .navbar .nav-link {
+                padding: 0.5rem 0;
+                margin-bottom: 0.25rem;
+            }
+            
+            #authButtons {
+                flex-direction: column;
+                width: 100%;
+                gap: 8px;
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid #e9ecef;
+            }
+            
+            #authButtons button {
+                width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
     <!-- Bannière de permission de notifications -->
@@ -37,8 +160,9 @@
     </div>
 
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-light fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-light fixed-top bg-white shadow-sm">
         <div class="container">
+            <!-- Logo et Marque -->
             <a class="navbar-brand d-flex align-items-center" href="#home">
                 <div class="logo-placeholder me-3">
                     <i class="fas fa-code"></i>
@@ -49,42 +173,82 @@
                 </div>
             </a>
             
-            <div class="d-flex align-items-center order-lg-3">
-                <!-- Cloche de notification -->
-                <button id="notification-bell" class="btn btn-outline-primary me-2 position-relative">
-                    <i class="fas fa-bell"></i>
-                    <span class="notification-badge"></span>
-                </button>
-                
-                <!-- Bouton thème -->
-                <button id="theme-toggle" class="btn btn-outline-primary me-3">
-                    <i class="fas fa-moon"></i>
-                </button>
-                
-                <!-- Bouton menu mobile -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-            </div>
+            <!-- Menu Burger Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             
-            <div class="collapse navbar-collapse order-lg-2" id="navbarNav">
+            <!-- Contenu Navbar Collapsible -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <!-- Navigation Gauche -->
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link active" href="#home">Accueil</a>
+                        <a class="nav-link" href="#home">Accueil</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#about">À propos</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#courses">
+                            <i class="fas fa-graduation-cap me-1"></i>Cours & Formations
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="#portfolio">Portfolio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#blog">Blog</a>
+                        <a class="nav-link" href="#blog">Blog Technique</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="#contact">Contact</a>
                     </li>
                 </ul>
+            </div>
+            
+            <!-- Actions Droite (Langue, Thème, Auth) -->
+            <div class="d-flex align-items-center gap-2 ms-auto ms-lg-0">
+                <!-- Sélecteur Langue DÉSACTIVÉ - Site en français permanent -->
+                <!-- <div class="language-selector-container d-flex gap-1">
+                    <span class="lang-flag active" role="button" title="Français" onclick="selectLanguage('fr')" style="cursor: pointer; font-size: 1.3em;">
+                        🇫🇷
+                    </span>
+                    <span class="lang-flag inactive" role="button" title="English" onclick="selectLanguage('en')" style="cursor: pointer; font-size: 1.3em; opacity: 0.5;">
+                        🇬🇧
+                    </span>
+                </div> -->
+                
+                <!-- Boutons Thème & Notifications -->
+                <button id="theme-toggle" class="btn btn-outline-secondary btn-sm" title="Mode sombre">
+                    <i class="fas fa-moon"></i>
+                </button>
+                
+                <button id="notification-bell" class="btn btn-outline-secondary btn-sm position-relative" title="Notifications">
+                    <i class="fas fa-bell"></i>
+                    <span class="notification-badge"></span>
+                </button>
+                
+                <!-- Boutons Auth (Cachés après connexion) -->
+                <div id="authButtons" class="d-flex gap-2">
+                    <button class="btn btn-outline-primary btn-sm" onclick="showLoginModal()">
+                        <i class="fas fa-sign-in-alt me-1"></i><span data-translate="login.signin">Se connecter</span>
+                    </button>
+                    <button class="btn btn-primary btn-sm" onclick="showRegisterModal()">
+                        <i class="fas fa-user-plus me-1"></i><span data-translate="register.signup">S'inscrire</span>
+                    </button>
+                </div>
+                
+                <!-- Menu Utilisateur (Visible après connexion) -->
+                <div id="userMenu" class="dropdown" style="display: none;">
+                    <button class="btn btn-outline-primary btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown">
+                        <i class="fas fa-user-circle me-1"></i><span id="userName">Utilisateur</span>
+                    </button>
+                    <ul class="dropdown-menu dropdown-menu-end">
+                        <li><a class="dropdown-item" href="#" onclick="viewProfile()"><i class="fas fa-user me-2"></i><span data-translate="nav.myAccount">Mon Compte</span></a></li>
+                        <li><a class="dropdown-item" href="#" onclick="viewMyLearning(); return false;"><i class="fas fa-book me-2"></i>📚 Mes Cours</a></li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li><a class="dropdown-item text-danger" href="#" onclick="logoutUser()"><i class="fas fa-sign-out-alt me-2"></i><span data-translate="nav.logout">Déconnexion</span></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </nav>
@@ -95,7 +259,7 @@
             <div class="row align-items-center min-vh-100">
                 <div class="col-lg-6"><br><br>
                     <h1 class="hero-title">
-                        Salut, je suis <span class="text-primary">Wilfred</span> 👋
+                        <span>Salut, je suis</span> <span class="text-primary">Wilfred</span> 👋
                     </h1>
                     <h2 class="hero-subtitle text-secondary">Développeur Full-Stack & Étudiant en Génie Logiciel</h2>
                     <p class="hero-description">
@@ -120,9 +284,12 @@
                         <a href="#portfolio" class="btn btn-primary btn-lg me-3">
                             <i class="fas fa-briefcase me-2"></i>Voir mes projets
                         </a>
-                        <a href="https://wa.me/+237672922360" class="btn btn-success btn-lg" target="_blank">
+                        <a href="https://wa.me/+237672922360" class="btn btn-success btn-lg me-3" target="_blank">
                             <i class="fab fa-whatsapp me-2"></i>WhatsApp
                         </a>
+                        <button class="btn btn-outline-primary btn-lg" data-bs-toggle="modal" data-bs-target="#cvModal">
+                            <i class="fas fa-download me-2"></i>Télécharger CV
+                        </button>
                     </div>
                 </div>
                 <div class="col-lg-6 text-center">
@@ -135,6 +302,42 @@
         </div>
         <div class="scroll-indicator">
             <i class="fas fa-chevron-down"></i>
+        </div>
+    </section>
+
+    <!-- Section Statistiques -->
+    <section id="stats" class="bg-gradient-primary text-white py-5">
+        <div class="container">
+            <div class="row text-center">
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <h3 class="fs-1 fw-bold mb-2">4+</h3>
+                        <p class="mb-0">Projets Majeurs</p>
+                        <small class="text-white-50">MySCC, MyStudent, PainPilote, DigitalMarket</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <h3 class="fs-1 fw-bold mb-2">8+</h3>
+                        <p class="mb-0">Technologies</p>
+                        <small class="text-white-50">HTML5, CSS3, JS, C#, MySQL, Bootstrap, Git</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <h3 class="fs-1 fw-bold mb-2">95%</h3>
+                        <p class="mb-0">Satisfaction Client</p>
+                        <small class="text-white-50">Basée sur les retours utilisateurs</small>
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 mb-4">
+                    <div class="stat-card">
+                        <h3 class="fs-1 fw-bold mb-2">24/24</h3>
+                        <p class="mb-0">Disponibilité</p>
+                        <small class="text-white-50">Support et maintenance constant</small>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
@@ -229,6 +432,959 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- Section Formation & Certifications -->
+    <section id="formation" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Formation & Certifications</h2>
+                    <p class="lead">Mon parcours académique et développement professionnel</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Formation 1 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="education-card">
+                        <div class="education-icon bg-primary">
+                            <i class="fas fa-graduation-cap"></i>
+                        </div>
+                        <div class="education-content">
+                            <h5>Licence Professionnelle en Génie Logiciel</h5>
+                            <p class="text-muted"><i class="fas fa-calendar-alt me-2"></i>2023 - 2024</p>
+                            <p>
+                                Formation complète en génie logiciel couvrant :
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-check text-success me-2"></i>Méthodologies agiles (Scrum, Kanban)</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Design patterns et architecture logicielle</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Développement Full-Stack</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Gestion de projets informatiques</li>
+                                <li><i class="fas fa-check text-success me-2"></i>Cybersécurité et bonnes pratiques</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="badge bg-success">Complétée</span>
+                                <span class="badge bg-info">Distinction</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Formation 2 -->
+                <div class="col-lg-6 mb-4">
+                    <div class="education-card">
+                        <div class="education-icon bg-info">
+                            <i class="fas fa-network-wired"></i>
+                        </div>
+                        <div class="education-content">
+                            <h5>Formation en Réseaux Informatiques</h5>
+                            <p class="text-muted"><i class="fas fa-calendar-alt me-2"></i>2024 - En cours</p>
+                            <p>
+                                Approfondissement des connaissances en réseaux et infrastructure :
+                            </p>
+                            <ul class="list-unstyled small">
+                                <li><i class="fas fa-check text-info me-2"></i>TCP/IP et protocoles réseau</li>
+                                <li><i class="fas fa-check text-info me-2"></i>Administration Linux</li>
+                                <li><i class="fas fa-check text-info me-2"></i>Configuration de serveurs</li>
+                                <li><i class="fas fa-check text-info me-2"></i>Sécurité réseau et firewalls</li>
+                                <li><i class="fas fa-check text-info me-2"></i>Cloud computing (AWS, Azure)</li>
+                            </ul>
+                            <div class="mt-3">
+                                <span class="badge bg-warning text-dark">En cours - 60% complété</span>
+                                <span class="badge bg-primary">Certifications prévues</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Certifications obtenues -->
+            <div class="row mt-5">
+                <div class="col-lg-12">
+                    <h4 class="mb-4"><i class="fas fa-certificate text-warning me-2"></i>Certifications & Compétences Validées</h4>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fab fa-git-alt fa-3x text-danger mb-3"></i>
+                                <h6>Git & GitHub</h6>
+                                <p class="small text-muted">Gestion de version avancée</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fas fa-database fa-3x text-success mb-3"></i>
+                                <h6>MySQL & SQL</h6>
+                                <p class="small text-muted">Bases de données relationnelles</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fas fa-code fa-3x text-primary mb-3"></i>
+                                <h6>Programmation orientée objet</h6>
+                                <p class="small text-muted">C#, Java, Python</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fab fa-html5 fa-3x text-danger mb-3"></i>
+                                <h6>Web Responsive</h6>
+                                <p class="small text-muted">HTML5, CSS3, Bootstrap 5</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fab fa-js-square fa-3x text-warning mb-3"></i>
+                                <h6>JavaScript Avancé</h6>
+                                <p class="small text-muted">ES6+, DOM, Async/Await</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <div class="cert-badge">
+                                <i class="fas fa-mobile-alt fa-3x text-success mb-3"></i>
+                                <h6>Design Mobile-First</h6>
+                                <p class="small text-muted">Responsive & Progressive Web Apps</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Timeline Professionnel -->
+    <section id="timeline" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Mon Parcours Professionnel</h2>
+                    <p class="lead">De l'expérience terrain au développement logiciel</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="vertical-timeline">
+                        <!-- Timeline Item 1 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker timeline-marker-primary">
+                                <i class="fas fa-warehouse"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Agent Stock - SCC (Société des Céréales du Cameroun)</h5>
+                                <p class="text-muted small"><i class="fas fa-calendar-alt me-2"></i>2021 - 2023</p>
+                                <ul class="list-unstyled small">
+                                    <li><i class="fas fa-arrow-right text-primary me-2"></i>Gestion complète des stocks et inventaires</li>
+                                    <li><i class="fas fa-arrow-right text-primary me-2"></i>Coordination avec équipes multidisciplinaires</li>
+                                    <li><i class="fas fa-arrow-right text-primary me-2"></i>Identification des inefficacités opérationnelles</li>
+                                    <li><i class="fas fa-arrow-right text-primary me-2"></i>Inspiration pour créer MySCC</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 2 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker timeline-marker-success">
+                                <i class="fas fa-code"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Développement MySCC (Application Desktop C# WinForms)</h5>
+                                <p class="text-muted small"><i class="fas fa-calendar-alt me-2"></i>2023</p>
+                                <ul class="list-unstyled small">
+                                    <li><i class="fas fa-arrow-right text-success me-2"></i>Création d'une solution complète de gestion pour minoterie</li>
+                                    <li><i class="fas fa-arrow-right text-success me-2"></i>Architecture MVC avec séparation des préoccupations</li>
+                                    <li><i class="fas fa-arrow-right text-success me-2"></i>95% de satisfaction utilisateur</li>
+                                    <li><i class="fas fa-arrow-right text-success me-2"></i>Réduction de 75% du temps de saisie</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 3 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker timeline-marker-info">
+                                <i class="fas fa-globe"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Transition vers Développement Web</h5>
+                                <p class="text-muted small"><i class="fas fa-calendar-alt me-2"></i>2023 - 2024</p>
+                                <ul class="list-unstyled small">
+                                    <li><i class="fas fa-arrow-right text-info me-2"></i>Maîtrise de HTML5, CSS3 et JavaScript moderne</li>
+                                    <li><i class="fas fa-arrow-right text-info me-2"></i>Développement de MyStudent (Plateforme étudiante)</li>
+                                    <li><i class="fas fa-arrow-right text-info me-2"></i>Création de PainPilote (Gestion boulangeries)</li>
+                                    <li><i class="fas fa-arrow-right text-info me-2"></i>Expertise en responsive design et UX/UI</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 4 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker timeline-marker-warning">
+                                <i class="fas fa-graduation-cap"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Licence Professionnelle en Génie Logiciel</h5>
+                                <p class="text-muted small"><i class="fas fa-calendar-alt me-2"></i>2024</p>
+                                <ul class="list-unstyled small">
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Validation académique de compétences</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Apprentissage méthodologies agiles</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Maîtrise de l'architecture logicielle</li>
+                                    <li><i class="fas fa-arrow-right text-warning me-2"></i>Portfolio avec 4 projets majeurs</li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Timeline Item 5 -->
+                        <div class="timeline-item">
+                            <div class="timeline-marker timeline-marker-danger">
+                                <i class="fas fa-network-wired"></i>
+                            </div>
+                            <div class="timeline-content">
+                                <h5>Formation en Réseaux Informatiques</h5>
+                                <p class="text-muted small"><i class="fas fa-calendar-alt me-2"></i>2024 - Actuellement</p>
+                                <ul class="list-unstyled small">
+                                    <li><i class="fas fa-arrow-right text-danger me-2"></i>Approfondissement Infrastructure & Cloud</li>
+                                    <li><i class="fas fa-arrow-right text-danger me-2"></i>Administration Linux et serveurs</li>
+                                    <li><i class="fas fa-arrow-right text-danger me-2"></i>Sécurité réseau avancée</li>
+                                    <li><i class="fas fa-arrow-right text-danger me-2"></i>Certifications en cours</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+        </div>
+    </section>
+
+    <!-- Section Cours & Formations (NOUVEAU) -->
+    <section id="courses" class="bg-light py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">
+                        <i class="fas fa-graduation-cap me-2"></i>Cours & Formations
+                    </h2>
+                    <p class="lead">
+                        <i class="fas fa-map-pin text-danger me-2"></i>Basé au Cameroun
+                        <i class="fas fa-flag text-success me-2 ms-3"></i>Enseignement en ligne & présentiel
+                    </p>
+                    <p class="text-muted">
+                        Formations complètes en Informatique, Réseaux, Programmation, Maintenance et Hardware<br>
+                        <strong class="text-success">Paiement sécurisé via Orange Money 🟠</strong>
+                    </p>
+                </div>
+            </div>
+
+            <!-- Onglets Catégories -->
+            <div class="row mb-5">
+                <div class="col-lg-12">
+                    <ul class="nav nav-pills justify-content-center mb-4" id="coursesTabs" role="tablist">
+                        <li class="nav-item me-2" role="presentation">
+                            <button class="btn btn-outline-primary active" id="free-tab" data-bs-toggle="tab" data-bs-target="#free-courses" type="button">
+                                <i class="fas fa-gift me-2"></i>Cours Gratuits
+                            </button>
+                        </li>
+                        <li class="nav-item me-2" role="presentation">
+                            <button class="btn btn-outline-success" id="paid-tab" data-bs-toggle="tab" data-bs-target="#paid-courses" type="button">
+                                <i class="fas fa-book me-2"></i>Formations Payantes
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="btn btn-outline-info" id="workshops-tab" data-bs-toggle="tab" data-bs-target="#workshops" type="button">
+                                <i class="fas fa-tools me-2"></i>Workshops & Séminaires
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Contenu Onglets -->
+            <div class="tab-content" id="coursesContent">
+                
+                <!-- COURS GRATUITS -->
+                <div class="tab-pane fade show active" id="free-courses" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="alert alert-info">
+                                <i class="fas fa-star me-2"></i>
+                                <strong>Accès Gratuit :</strong> Apprenez les bases sans engagement financier
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Cours 1 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-info">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h5>Introduction à la Programmation</h5>
+                                <p class="text-muted small">6 semaines • 12 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Bases du Python</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Variables et types de données</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Structures de contrôle</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Fonctions essentielles</li>
+                                </ul>
+                                <button class="btn btn-sm btn-info w-100" onclick="enrollCourse('Introduction Programmation', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cours 2 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-success">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h5>HTML5 & CSS3 - Bases</h5>
+                                <p class="text-muted small">4 semaines • 8 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Structure HTML5</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Styling avec CSS3</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Responsive Design basics</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Mise en page simple</li>
+                                </ul>
+                                <button class="btn btn-sm btn-success w-100" onclick="enrollCourse('HTML5 CSS3 Bases', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cours 3 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-warning">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h5>Fondamentaux Réseaux</h5>
+                                <p class="text-muted small">5 semaines • 10 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Modèle OSI et TCP/IP</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Adressage IP (IPv4)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Types de réseaux</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Concepts basiques</li>
+                                </ul>
+                                <button class="btn btn-sm btn-warning text-dark w-100" onclick="enrollCourse('Fondamentaux Reseaux', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cours 4 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-secondary">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h5>Introduction à Linux</h5>
+                                <p class="text-muted small">4 semaines • 8 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Installation Linux</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Commandes essentielles</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Gestion des fichiers</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Utilisateurs et permissions</li>
+                                </ul>
+                                <button class="btn btn-sm btn-secondary w-100" onclick="enrollCourse('Introduction Linux', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cours 5 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-danger">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h5>Hardware Essentials</h5>
+                                <p class="text-muted small">3 semaines • 6 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Composants PC</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>BIOS et EFI</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Diagnostique hardware</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Maintenance préventive</li>
+                                </ul>
+                                <button class="btn btn-sm btn-danger w-100" onclick="enrollCourse('Hardware Essentials', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Cours 6 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card free">
+                                <div class="course-badge">GRATUIT</div>
+                                <div class="course-icon bg-primary">
+                                    <i class="fas fa-wrench"></i>
+                                </div>
+                                <h5>Maintenance Logicielle</h5>
+                                <p class="text-muted small">4 semaines • 8 heures total</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Installation Windows</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Gestion des drivers</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Antivirus & sécurité</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Troubleshooting courant</li>
+                                </ul>
+                                <button class="btn btn-sm btn-primary w-100" onclick="enrollCourse('Maintenance Logicielle', 'free')">
+                                    <i class="fas fa-sign-in-alt me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FORMATIONS PAYANTES -->
+                <div class="tab-pane fade" id="paid-courses" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="alert alert-success">
+                                <i class="fas fa-certificate me-2"></i>
+                                <strong>Formations Certifiantes :</strong> Obtenez un certificat signé et cachet électronique
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <!-- Formation 1 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid">
+                                <div class="course-badge premium">PREMIUM</div>
+                                <div class="course-price">45 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-primary">
+                                    <i class="fas fa-laptop-code"></i>
+                                </div>
+                                <h5>Python Avancé</h5>
+                                <p class="text-muted small">8 semaines • 24 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Programmation OOP</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Gestion des exceptions</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Base de données</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Projets pratiques</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Certificat + support 3 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-primary w-100" onclick="enrollPaidCourse('Python Avance', 45000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formation 2 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid featured">
+                                <div class="course-badge premium">POPULAIRE</div>
+                                <div class="course-price">55 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-success">
+                                    <i class="fas fa-globe"></i>
+                                </div>
+                                <h5>Développement Web Complet</h5>
+                                <p class="text-muted small">12 semaines • 36 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Frontend (HTML, CSS, JS)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Backend (PHP/Node)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Base de données (MySQL)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Deployment & hosting</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Portfolio personnel</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Support 6 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-success w-100" onclick="enrollPaidCourse('Developpement Web Complet', 55000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formation 3 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid">
+                                <div class="course-badge premium">PREMIUM</div>
+                                <div class="course-price">60 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-warning">
+                                    <i class="fas fa-network-wired"></i>
+                                </div>
+                                <h5>Réseaux & Administration</h5>
+                                <p class="text-muted small">10 semaines • 30 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>TCP/IP avancé</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Configuration réseau</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Serveurs Linux</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Sécurité réseau</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Virtualisation (VMware)</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Support 6 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-warning text-dark w-100" onclick="enrollPaidCourse('Reseaux Administration', 60000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formation 4 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid">
+                                <div class="course-badge premium">PREMIUM</div>
+                                <div class="course-price">50 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-danger">
+                                    <i class="fas fa-server"></i>
+                                </div>
+                                <h5>C# & .NET Framework</h5>
+                                <p class="text-muted small">9 semaines • 27 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Syntaxe C# avancée</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>WinForms & WPF</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>ASP.NET Web</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Entity Framework</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Projets réels</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Support 3 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-danger w-100" onclick="enrollPaidCourse('CSharp DotNet', 50000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formation 5 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid">
+                                <div class="course-badge premium">PREMIUM</div>
+                                <div class="course-price">40 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-secondary">
+                                    <i class="fas fa-tools"></i>
+                                </div>
+                                <h5>Maintenance & Support IT</h5>
+                                <p class="text-muted small">7 semaines • 21 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Diagnostique hardware</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Troubleshooting software</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Active Directory</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Remote support</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Ticketing systems</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Support 3 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-secondary w-100" onclick="enrollPaidCourse('Maintenance IT', 40000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+
+                        <!-- Formation 6 -->
+                        <div class="col-lg-4 col-md-6 mb-4">
+                            <div class="course-card paid">
+                                <div class="course-badge premium">PREMIUM</div>
+                                <div class="course-price">35 000 <span>FCFA</span></div>
+                                <div class="course-icon bg-info">
+                                    <i class="fas fa-shield-alt"></i>
+                                </div>
+                                <h5>Cybersécurité Basics</h5>
+                                <p class="text-muted small">6 semaines • 18 heures • Certification</p>
+                                <ul class="list-unstyled small mb-3">
+                                    <li><i class="fas fa-check text-success me-2"></i>Types d'attaques</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Principes de sécurité</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Firewalls & IDS</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Cryptographie base</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Audit sécurité</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Support 3 mois</li>
+                                </ul>
+                                <button class="btn btn-sm btn-info w-100" onclick="enrollPaidCourse('Cybersecurite', 35000)">
+                                    <i class="fas fa-shopping-cart me-1"></i>S'inscrire
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- WORKSHOPS & SÉMINAIRES -->
+                <div class="tab-pane fade" id="workshops" role="tabpanel">
+                    <div class="row">
+                        <div class="col-lg-12 mb-4">
+                            <div class="alert alert-warning">
+                                <i class="fas fa-calendar me-2"></i>
+                                <strong>Workshops Intensifs :</strong> Sessions courtes pour des sujets spécifiques
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-primary text-white p-3 rounded-top">
+                                    <h5 class="mb-0">Git & GitHub - Contrôle de Version</h5>
+                                    <small>1 jour (8h) • 12 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Maîtrisez Git et GitHub pour collaborer efficacement</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Installation et configuration</li>
+                                        <li>✓ Commits, branches, merges</li>
+                                        <li>✓ Travail collaboratif</li>
+                                        <li>✓ Résolution de conflits</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-primary w-100 mt-3" onclick="enrollPaidCourse('Git GitHub Workshop', 12000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-success text-white p-3 rounded-top">
+                                    <h5 class="mb-0">Docker & Containerization</h5>
+                                    <small>1 jour (8h) • 15 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Déployez vos applications avec Docker</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Concepts Docker</li>
+                                        <li>✓ Images et conteneurs</li>
+                                        <li>✓ Docker Compose</li>
+                                        <li>✓ Orchestration basique</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-success w-100 mt-3" onclick="enrollPaidCourse('Docker Workshop', 15000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-info text-white p-3 rounded-top">
+                                    <h5 class="mb-0">API REST & Postman</h5>
+                                    <small>1 jour (8h) • 10 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Créez et testez des APIs REST profesionnelles</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Principes REST</li>
+                                        <li>✓ Création d'API</li>
+                                        <li>✓ Testing avec Postman</li>
+                                        <li>✓ Documentation API</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-info w-100 mt-3" onclick="enrollPaidCourse('API REST Workshop', 10000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-warning text-dark p-3 rounded-top">
+                                    <h5 class="mb-0">Google Cloud Platform (GCP)</h5>
+                                    <small>2 jours (16h) • 25 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Déployez vos applications sur le cloud</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Compte GCP gratuit</li>
+                                        <li>✓ Compute Engine</li>
+                                        <li>✓ Cloud SQL</li>
+                                        <li>✓ Deployments pratiques</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-warning text-dark w-100 mt-3" onclick="enrollPaidCourse('GCP Workshop', 25000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-danger text-white p-3 rounded-top">
+                                    <h5 class="mb-0">Kali Linux & Ethical Hacking</h5>
+                                    <small>3 jours (24h) • 40 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Initiez-vous au pentest éthique</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Installation Kali</li>
+                                        <li>✓ Reconnaissance</li>
+                                        <li>✓ Outils pentest</li>
+                                        <li>✓ Rapports sécurité</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-danger w-100 mt-3" onclick="enrollPaidCourse('Ethical Hacking Workshop', 40000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6 mb-4">
+                            <div class="workshop-card">
+                                <div class="workshop-header bg-secondary text-white p-3 rounded-top">
+                                    <h5 class="mb-0">MongoDB & NoSQL</h5>
+                                    <small>1 jour (8h) • 8 000 FCFA</small>
+                                </div>
+                                <div class="p-3">
+                                    <p class="text-muted">Travaillez avec les bases NoSQL</p>
+                                    <ul class="list-unstyled small">
+                                        <li>✓ Concepts NoSQL</li>
+                                        <li>✓ MongoDB basics</li>
+                                        <li>✓ Requêtes avancées</li>
+                                        <li>✓ Intégration Node.js</li>
+                                    </ul>
+                                    <button class="btn btn-sm btn-secondary w-100 mt-3" onclick="enrollPaidCourse('MongoDB Workshop', 8000)">
+                                        <i class="fas fa-calendar me-1"></i>Réserver
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Section Orange Money -->
+            <div class="row mt-5 pt-5 border-top">
+                <div class="col-lg-12">
+                    <h4 class="mb-4 text-center">
+                        <i class="fas fa-mobile-alt me-2"></i>Paiement via Mobile Money
+                    </h4>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2">
+                    <div class="orange-money-section">
+                        <div class="row align-items-center">
+                            <div class="col-md-6 text-center mb-4">
+                                <div class="orange-logo-large">
+                                    <i class="fas fa-mobile-alt" style="font-size: 80px; color: #FF6600;"></i>
+                                    <div class="mt-3">
+                                        <h5 style="color: #FF6600;">MOBILE MONEY</h5>
+                                        <p class="text-muted">Moyen de paiement sécurisé au Cameroun</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <h5>Comment Payer ?</h5>
+                                <div class="step-list">
+                                    <div class="step">
+                                        <div class="step-number">1</div>
+                                        <div class="step-content">
+                                            <strong>Sélectionnez votre cours</strong>
+                                            <p class="small text-muted">Cliquez sur "S'inscrire"</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">2</div>
+                                        <div class="step-content">
+                                            <strong>Envoyez montant via Mobile Money</strong>
+                                            <p class="small text-muted">Numéro: <strong class="text-danger">672922360</strong></p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">3</div>
+                                        <div class="step-content">
+                                            <strong>Confirmez le paiement</strong>
+                                            <p class="small text-muted">Entrez votre référence de transaction</p>
+                                        </div>
+                                    </div>
+                                    <div class="step">
+                                        <div class="step-number">4</div>
+                                        <div class="step-content">
+                                            <strong>Accès immédiat aux ressources</strong>
+                                            <p class="small text-muted">Reçu PDF signé + contenu du cours</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="alert alert-danger mt-4">
+                                    <h6><i class="fas fa-shield-alt me-2"></i>✅ Paiement Sécurisé</h6>
+                                    <ul class="mb-0 small">
+                                        <li>✓ Mobile Money (672922360)</li>
+                                        <li>✓ Reçu PDF signé électroniquement</li>
+                                        <li>✓ Accès IMMÉDIAT au contenu</li>
+                                        <li>✓ Support email 24/24</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Section Services -->
+    <section id="services" class="py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 text-center mb-5">
+                    <h2 class="section-title">Services & Expertise</h2>
+                    <p class="lead">Solutions digitales adaptées à vos besoins</p>
+                </div>
+            </div>
+            
+            <div class="row">
+                <!-- Service 1 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-primary">
+                            <i class="fas fa-desktop"></i>
+                        </div>
+                        <h5>Applications Desktop</h5>
+                        <p class="text-muted">Solutions robustes en C# WinForms pour la gestion métier</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Gestion de stocks</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Point de vente (POS)</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Rapports automatisés</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Bases de données MySQL</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-success">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h5>Sites Web Modernes</h5>
+                        <p class="text-muted">Développement web responsive avec les dernières technologies</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Design mobile-first</li>
+                            <li><i class="fas fa-check text-success me-2"></i>JavaScript moderne (ES6+)</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Bootstrap & animations</li>
+                            <li><i class="fas fa-check text-success me-2"></i>SEO optimisé</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-info">
+                            <i class="fas fa-shopping-cart"></i>
+                        </div>
+                        <h5>E-Commerce</h5>
+                        <p class="text-muted">Plateformes e-commerce complètes avec paiements intégrés</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Gestion produits</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Systèmes de paiement</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Gestion des commandes</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Suivi des colis</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 4 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-warning">
+                            <i class="fas fa-lightbulb"></i>
+                        </div>
+                        <h5>Consultation IT</h5>
+                        <p class="text-muted">Audit et recommandations pour vos projets technologiques</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Analyse de besoins</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Architecture technique</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Optimisation performance</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Bonnes pratiques dev</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 5 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-danger">
+                            <i class="fas fa-cogs"></i>
+                        </div>
+                        <h5>Maintenance & Support</h5>
+                        <p class="text-muted">Support technique 24/24 pour vos applications</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Bug fixes rapides</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Optimisation code</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Mises à jour système</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Support utilisateurs</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Service 6 -->
+                <div class="col-lg-4 col-md-6 mb-4">
+                    <div class="service-card">
+                        <div class="service-icon bg-secondary">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
+                        <h5>Formation & Coaching</h5>
+                        <p class="text-muted">Transfert de compétences à vos équipes de développement</p>
+                        <ul class="list-unstyled small">
+                            <li><i class="fas fa-check text-success me-2"></i>Formations personnalisées</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Workshops techniques</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Mentorat individuel</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Documentation complète</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Pricing Table -->
+            <div class="row mt-5">
+                <div class="col-lg-12 text-center mb-4">
+                    <h4>Tarification Indicative</h4>
+                    <p class="text-muted">Les tarifs peuvent être ajustés selon la complexité et la durée du projet</p>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-4 mb-4">
+                    <div class="pricing-card">
+                        <h5>🌱 Startup</h5>
+                        <div class="price">$500 - $2000</div>
+                        <p class="text-muted">Petit projet</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><i class="fas fa-check text-success me-2"></i>App web simple</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Landing page</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Support email</li>
+                        </ul>
+                        <button class="btn btn-sm btn-outline-primary w-100" onclick="requestQuote('Startup')">Demander un devis</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="pricing-card featured">
+                        <div class="badge bg-warning text-dark position-absolute top-0 start-50 translate-middle-x">Populaire</div>
+                        <h5>🚀 Business</h5>
+                        <div class="price">$2000 - $8000</div>
+                        <p class="text-muted">Projet moyen</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><i class="fas fa-check text-success me-2"></i>App web complète</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Base de données</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Support prioritaire</li>
+                            <li><i class="fas fa-check text-success me-2"></i>3 mois maintenance</li>
+                        </ul>
+                        <button class="btn btn-sm btn-primary w-100" onclick="requestQuote('Business')">Demander un devis</button>
+                    </div>
+                </div>
+                <div class="col-md-4 mb-4">
+                    <div class="pricing-card">
+                        <h5>💎 Enterprise</h5>
+                        <div class="price">$8000+</div>
+                        <p class="text-muted">Projet complexe</p>
+                        <ul class="list-unstyled mb-3">
+                            <li><i class="fas fa-check text-success me-2"></i>App full-stack</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Cloud deployment</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Support 24/24</li>
+                            <li><i class="fas fa-check text-success me-2"></i>Maintenance illimitée</li>
+                        </ul>
+                        <button class="btn btn-sm btn-outline-primary w-100" onclick="requestQuote('Enterprise')">Demander un devis</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
         </div>
     </section>
 
@@ -540,23 +1696,23 @@
                         <div class="social-links text-center">
                             <h5 class="mb-3">Suivez-moi</h5>
                             <div class="d-flex justify-content-center flex-wrap">
-                                <a href="mailto:wilfreddjikiakam@gmail.com" class="social-link">
+                                <a href="mailto:wilfreddjikiakam@gmail.com" class="social-link" title="Email">
                                     <i class="fas fa-envelope"></i>
                                 </a>
-                                <a href="https://facebook.com/respocodeur" class="social-link facebook" target="_blank">
-                                    <i class="fab fa-facebook-f"></i>
-                                </a>
-                                <a href="https://instagram.com/wilfred.djikiakam" class="social-link instagram" target="_blank">
-                                    <i class="fab fa-instagram"></i>
-                                </a>
-                                <a href="https://twitter.com/wilfred.djikiakam" class="social-link twitter" target="_blank">
-                                    <i class="fab fa-twitter"></i>
-                                </a>
-                                <a href="https://linkedin.com/in/wilfred.djikiakam" class="social-link linkedin" target="_blank">
+                                <a href="https://www.linkedin.com/in/wilfreddjikiakam/" class="social-link linkedin" target="_blank" title="LinkedIn">
                                     <i class="fab fa-linkedin-in"></i>
                                 </a>
-                                <a href="https://wa.me/+237672922360" class="social-link" style="background: #25D366;" target="_blank">
+                                <a href="https://twitter.com/intent/follow?screen_name=wilfred%20djikiakam" class="social-link twitter" target="_blank" title="Twitter">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="https://github.com/wilfred-djikiakam" class="social-link github" target="_blank" title="GitHub">
+                                    <i class="fab fa-github"></i>
+                                </a>
+                                <a href="https://wa.me/+237672922360" class="social-link whatsapp" target="_blank" title="WhatsApp">
                                     <i class="fab fa-whatsapp"></i>
+                                </a>
+                                <a href="https://instagram.com/wilfred.djikiakam" class="social-link instagram" target="_blank" title="Instagram">
+                                    <i class="fab fa-instagram"></i>
                                 </a>
                             </div>
                         </div>
@@ -580,6 +1736,119 @@
         </div>
     </footer>
 
+    <!-- MODALS POUR LES PROJETS -->
+    
+    <!-- Modal CV -->
+    <div class="modal fade" id="cvModal" tabindex="-1">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">
+                        <i class="fas fa-file-pdf me-2 text-danger"></i>Curriculum Vitae - Wilfred Djikiakam
+                    </h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="alert alert-info">
+                        <i class="fas fa-info-circle me-2"></i>
+                        <strong>CV disponible au format PDF</strong> - Cliquez sur le bouton de téléchargement pour obtenir la version complète
+                    </div>
+                    
+                    <div class="cv-preview">
+                        <h6 class="text-primary mb-3"><i class="fas fa-user me-2"></i>Profil Professionnel</h6>
+                        <p>
+                            Développeur Full-Stack passionné avec 3+ années d'expérience en développement logiciel.
+                            Spécialisé en C# WinForms et développement web moderne (HTML5, CSS3, JavaScript).
+                            Titulaire d'une licence professionnelle en génie logiciel avec expérience pratique 
+                            en gestion de stocks et applications métier.
+                        </p>
+                        
+                        <h6 class="text-primary mb-3 mt-4"><i class="fas fa-graduation-cap me-2"></i>Formation</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <strong>Licence Professionnelle en Génie Logiciel</strong><br>
+                                <small class="text-muted">2023-2024 • Distinction obtenue</small>
+                            </li>
+                            <li class="mb-3">
+                                <strong>Formation en Réseaux Informatiques</strong><br>
+                                <small class="text-muted">2024-En cours • 60% complété</small>
+                            </li>
+                        </ul>
+                        
+                        <h6 class="text-primary mb-3 mt-4"><i class="fas fa-briefcase me-2"></i>Expérience</h6>
+                        <ul class="list-unstyled">
+                            <li class="mb-3">
+                                <strong>Agent Stock - SCC (Société des Céréales du Cameroun)</strong><br>
+                                <small class="text-muted">2021-2023</small><br>
+                                Gestion complète des stocks, coordination d'équipes, optimisation des processus
+                            </li>
+                            <li class="mb-3">
+                                <strong>Développeur Freelance</strong><br>
+                                <small class="text-muted">2023-Présent</small><br>
+                                4+ projets majeurs livrés avec succès, satisfaction client 95%+
+                            </li>
+                        </ul>
+                        
+                        <h6 class="text-primary mb-3 mt-4"><i class="fas fa-code me-2"></i>Compétences Techniques</h6>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <strong>Langages</strong>
+                                <ul class="list-unstyled small">
+                                    <li>• C# & .NET Framework</li>
+                                    <li>• JavaScript ES6+</li>
+                                    <li>• HTML5 & CSS3</li>
+                                    <li>• SQL & MySQL</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <strong>Frameworks & Outils</strong>
+                                <ul class="list-unstyled small">
+                                    <li>• Bootstrap 5</li>
+                                    <li>• WinForms</li>
+                                    <li>• Git & GitHub</li>
+                                    <li>• Vite</li>
+                                </ul>
+                            </div>
+                        </div>
+                        
+                        <h6 class="text-primary mb-3 mt-4"><i class="fas fa-star me-2"></i>Points Forts</h6>
+                        <div class="row">
+                            <div class="col-md-4">
+                                <span class="badge bg-primary me-2 mb-2">Adaptation</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="badge bg-success me-2 mb-2">Motivation</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="badge bg-warning text-dark me-2 mb-2">Engagement</span>
+                            </div>
+                        </div>
+                        <div class="row mt-2">
+                            <div class="col-md-4">
+                                <span class="badge bg-info me-2 mb-2">Polyvalence</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="badge bg-secondary me-2 mb-2">Leadership</span>
+                            </div>
+                            <div class="col-md-4">
+                                <span class="badge bg-danger me-2 mb-2">Autonomie</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                    <a href="javascript:window.print()" class="btn btn-info">
+                        <i class="fas fa-print me-1"></i>Imprimer
+                    </a>
+                    <button type="button" class="btn btn-danger" onclick="downloadCV()">
+                        <i class="fas fa-file-pdf me-1"></i>Télécharger PDF
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
     <!-- MODALS POUR LES PROJETS -->
     
     <!-- Modal MySCC -->
@@ -651,9 +1920,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <a href="#" class="btn btn-primary">
+                    <a href="https://github.com/wilfred-djikiakam/MySCC" class="btn btn-dark" target="_blank">
                         <i class="fab fa-github me-1"></i>Voir sur GitHub
                     </a>
+                    <button type="button" class="btn btn-primary" onclick="requestDemoModal('MySCC')">
+                        <i class="fas fa-play me-1"></i>Demander une démo
+                    </button>
                 </div>
             </div>
         </div>
@@ -741,8 +2013,8 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <a href="#" class="btn btn-primary">
-                        <i class="fas fa-external-link-alt me-1"></i>Voir la démo
+                    <a href="https://github.com/wilfred-djikiakam/MyStudent" class="btn btn-primary" target="_blank">
+                        <i class="fab fa-github me-1"></i>Voir sur GitHub
                     </a>
                 </div>
             </div>
@@ -837,9 +2109,12 @@
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
-                    <a href="#" class="btn btn-success">
-                        <i class="fas fa-play me-1"></i>Voir la démo live
+                    <a href="https://github.com/wilfred-djikiakam/DigitalMarket" class="btn btn-success" target="_blank">
+                        <i class="fab fa-github me-1"></i>Voir sur GitHub
                     </a>
+                    <button type="button" class="btn btn-primary" onclick="requestDemoModal('DigitalMarket')">
+                        <i class="fas fa-play me-1"></i>Voir la démo
+                    </button>
                 </div>
             </div>
         </div>
@@ -935,9 +2210,12 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
+                </div>https://github.com/wilfred-djikiakam/PainPilote" class="btn btn-warning" target="_blank">
+                        <i class="fab fa-github me-1"></i>Voir sur GitHub
+                    </a>
+                    <button type="button" class="btn btn-primary" onclick="requestDemoModal('PainPilote')">
+                        <i class="fas fa-eye me-1"></i>Demander une démo
+                    </buttontton type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fermer</button>
                     <a href="#" class="btn btn-warning">
                         <i class="fas fa-eye me-1"></i>Demander une démo
                     </a>
@@ -1888,7 +3166,24 @@ Brève description de ce que fait cette PR
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Script personnalisé -->
+    <!-- jsPDF pour génération de PDF -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <!-- html2canvas pour conversion HTML vers image -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    
+    <!-- ===== SYSTÈME MULTILINGUE (FRANÇAIS/ANGLAIS) ===== -->
+    <script src="language-system.js"></script>
+    
+    <!-- ===== SYSTÈME DE LOGIN (COMPTES UTILISATEURS) ===== -->
+    <script src="login-system.js"></script>
+    
+    <!-- ===== SCRIPTS DES COURS AVEC VRAI CONTENU ===== -->
+    <script src="courses-content-real.js"></script>
+    
+    <!-- ===== SYSTÈME DE PAIEMENT ET PROGRESSION ===== -->
+    <script src="payment-system.js"></script>
+    
+    <!-- ===== SCRIPT PRINCIPAL ===== -->
     <script src="script.js"></script>
 </body>
 </html>
