@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Démonstration - Système de Cours RESPOCODEUR</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        body { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; }
+        .demo-card { box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .step-badge { display: inline-block; width: 40px; height: 40px; border-radius: 50%; background: #007bff; color: white; text-align: center; line-height: 40px; font-weight: bold; }
+        .success-check { color: #28a745; font-size: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container py-5">
+        <div class="row">
+            <div class="col-lg-10 offset-lg-1">
+                
+                <!-- En-tête -->
+                <div class="text-center text-white mb-5">
+                    <h1 class="fw-bold mb-3">
+                        <i class="fas fa-graduation-cap me-2"></i>Système de Cours Intégré
+                    </h1>
+                    <p class="lead">Inscription immédiate → Accès complet aux ressources du cours</p>
+                </div>
+
+                <!-- Démonstration du Flux -->
+                <div class="card demo-card mb-4">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-check-circle me-2"></i>Flux Complet d'Inscription
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <!-- Étape 1 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">1</div>
+                                <strong>Cliquer sur un Cours</strong>
+                                <p class="text-muted mt-2">L'utilisateur sélectionne un cours gratuit ou payant</p>
+                                <div class="alert alert-info">
+                                    <code>Exemple: "Développement Web Complet"</code>
+                                </div>
+                            </div>
+
+                            <!-- Étape 2 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">2</div>
+                                <strong>Remplir le Formulaire</strong>
+                                <p class="text-muted mt-2">Entrer nom, email et WhatsApp</p>
+                                <ul class="small">
+                                    <li>✓ Nom Complet</li>
+                                    <li>✓ Email valide</li>
+                                    <li>✓ Numéro WhatsApp</li>
+                                </ul>
+                            </div>
+
+                            <!-- Étape 3 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">3</div>
+                                <strong>Cours Gratuit?</strong>
+                                <p class="text-muted mt-2">Si gratuit → Accès immédiat ✅</p>
+                                <div class="alert alert-success mb-0">
+                                    Les 6 cours gratuits sont accessibles directement
+                                </div>
+                            </div>
+
+                            <!-- Étape 4 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">4</div>
+                                <strong>Formation Payante?</strong>
+                                <p class="text-muted mt-2">Si payante → Paiement Mobile Money</p>
+                                <div class="alert alert-warning mb-0">
+                                    <strong>Numéro:</strong> 672922360
+                                </div>
+                            </div>
+
+                            <!-- Étape 5 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">5</div>
+                                <strong>Confirmer Paiement</strong>
+                                <p class="text-muted mt-2">Entrer la référence de transaction Mobile Money</p>
+                                <div class="alert alert-info mb-0">
+                                    Reçu PDF signé généré automatiquement
+                                </div>
+                            </div>
+
+                            <!-- Étape 6 -->
+                            <div class="col-md-6 mb-4">
+                                <div class="step-badge me-3">✅</div>
+                                <strong>Accès Immédiat!</strong>
+                                <p class="text-muted mt-2">Page du cours affichée dans le navigateur</p>
+                                <div class="alert alert-success mb-0">
+                                    Tous les modules, ressources et vidéos disponibles
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Détails Techniques -->
+                <div class="card demo-card mb-4">
+                    <div class="card-header bg-info text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-cogs me-2"></i>Ce Qui se Passe Techniquement
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6>Pour les Cours Gratuits</h6>
+                                <ol class="small">
+                                    <li>Formulaire validé</li>
+                                    <li>Données sauvegardées dans localStorage</li>
+                                    <li>Fonction <code>displayCourseLessons()</code> appelée</li>
+                                    <li>Contenu du cours affiché</li>
+                                    <li>Utilisateur peut lire tous les modules</li>
+                                </ol>
+                            </div>
+                            <div class="col-md-6">
+                                <h6>Pour les Formations Payantes</h6>
+                                <ol class="small">
+                                    <li>Instructions Mobile Money affichées</li>
+                                    <li>Utilisateur envoie montant FCFA</li>
+                                    <li>Réf. transaction confirmée</li>
+                                    <li>Reçu PDF généré via jsPDF</li>
+                                    <li>Contenu du cours affiché</li>
+                                </ol>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Contenu d'un Cours Example -->
+                <div class="card demo-card mb-4">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-book me-2"></i>Exemple: Structure d'un Cours
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <h6>Développement Web Complet (55,000 FCFA)</h6>
+                        <ul class="list-group">
+                            <li class="list-group-item">
+                                <strong>Section 1:</strong> Frontend Avancé (HTML, CSS, JavaScript)
+                                <br><small class="text-muted">4 heures • Documents, vidéos, code examples</small>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Section 2:</strong> Frameworks Frontend (Bootstrap, Tailwind)
+                                <br><small class="text-muted">3 heures • Templates réutilisables</small>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Section 3:</strong> Backend avec PHP/Node.js
+                                <br><small class="text-muted">4 heures • Projets progressifs</small>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Section 4:</strong> Base de Données (MySQL)
+                                <br><small class="text-muted">3 heures • SQL avancé, optimisation</small>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Section 5:</strong> Déploiement & Hosting
+                                <br><small class="text-muted">2 heures • FTP, domaines, SSL</small>
+                            </li>
+                            <li class="list-group-item">
+                                <strong>Section 6:</strong> Projet Final (Site E-commerce)
+                                <br><small class="text-muted">3 heures • Projet complet + support 6 mois</small>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- Tarification -->
+                <div class="card demo-card mb-4">
+                    <div class="card-header bg-warning text-dark">
+                        <h5 class="mb-0">
+                            <i class="fas fa-money-bill-wave me-2"></i>Tarification en FCFA
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="card text-center border-success">
+                                    <div class="card-body">
+                                        <h6 class="text-success">COURS GRATUITS</h6>
+                                        <div class="text-danger fs-4 fw-bold">0 FCFA</div>
+                                        <small class="text-muted">6 cours disponibles</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center">
+                                    <div class="card-body">
+                                        <h6 class="text-info">FORMATIONS</h6>
+                                        <div class="text-info fs-4 fw-bold">8k - 60k FCFA</div>
+                                        <small class="text-muted">6 formations complètes</small>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="card text-center border-warning">
+                                    <div class="card-body">
+                                        <h6 class="text-warning">WORKSHOPS</h6>
+                                        <div class="text-warning fs-4 fw-bold">8k - 40k FCFA</div>
+                                        <small class="text-muted">6 sessions intensives</small>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Avantages -->
+                <div class="card demo-card">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            <i class="fas fa-star me-2"></i>Avantages du Système
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h6 class="text-success">✅ Pour l'Apprenant</h6>
+                                <ul class="small">
+                                    <li>Accès immédiat après inscription</li>
+                                    <li>Contenu complet et organisé</li>
+                                    <li>Ressources variées (PDFs, vidéos, code)</li>
+                                    <li>Reçu PDF pour formations payantes</li>
+                                    <li>Support email direct</li>
+                                    <li>Pas d'inscription externe nécessaire</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h6 class="text-success">✅ Pour le Formateur</h6>
+                                <ul class="small">
+                                    <li>Gestion des inscriptions intégrée</li>
+                                    <li>Reçus PDF automatiques</li>
+                                    <li>Paiements via Mobile Money</li>
+                                    <li>Données sauvegardées (localStorage)</li>
+                                    <li>Interface professionnelle</li>
+                                    <li>Sans serveur backend complexe</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Appel à l'Action -->
+                <div class="alert alert-success mt-5">
+                    <h6 class="mb-3">
+                        <i class="fas fa-arrow-right me-2"></i>Prêt à Commencer ?
+                    </h6>
+                    <p>
+                        Allez sur le site RESPOCODEUR, rendez-vous à la section "Cours & Formations" 
+                        et inscrivez-vous à un cours gratuit pour voir le système en action!
+                    </p>
+                    <a href="index.html#courses" class="btn btn-success">
+                        <i class="fas fa-graduation-cap me-2"></i>Aller aux Cours
+                    </a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
