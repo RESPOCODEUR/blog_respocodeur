@@ -702,6 +702,24 @@
                 </div>
             </div>
 
+            <div class="row mb-4 course-search-row">
+                <div class="col-lg-8 mx-auto">
+                    <div class="input-group course-search">
+                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                        <input id="courseSearchInput" type="search" class="form-control" placeholder="Rechercher un cours, un module, ou un thème..." aria-label="Recherche de cours">
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center mt-3 gap-2 flex-wrap">
+                        <div id="favoriteSummary" class="text-muted small">Favoris enregistrés : <strong id="favoriteCount">0</strong></div>
+                        <button id="favoriteToggleBtn" class="btn btn-outline-danger btn-sm">
+                            <i class="fas fa-heart me-1"></i>Voir Favoris
+                        </button>
+                    </div>
+                    <div id="courseSearchNoResults" class="alert alert-warning mt-3 d-none">
+                        Aucun cours ne correspond à votre recherche. Essayez un autre mot-clé.
+                    </div>
+                </div>
+            </div>
+
             <!-- Contenu Onglets -->
             <div class="tab-content" id="coursesContent">
                 
