@@ -148,7 +148,7 @@ function attachFavoriteButtons() {
         });
 
         card.appendChild(button);
-        updateFavoriteButton(card, title);
+        updateFavoriteButtonState();
     });
 }
 
