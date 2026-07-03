@@ -312,6 +312,11 @@ function recordPayment(userEmail, courseName, amount, paymentMethod = 'mobile_mo
 // ===== PAGE DE LOGIN MODALE =====
 
 function showLoginModal() {
+    const existing = document.getElementById('loginModal');
+    if (existing) {
+        existing.remove();
+    }
+
     const html = `
         <div class="modal fade" id="loginModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -368,6 +373,11 @@ function showLoginModal() {
 }
 
 function showRegisterModal() {
+    const existing = document.getElementById('registerModal');
+    if (existing) {
+        existing.remove();
+    }
+
     const html = `
         <div class="modal fade" id="registerModal" tabindex="-1">
             <div class="modal-dialog modal-lg">
@@ -579,8 +589,7 @@ function displayUserCourses(userEmail) {
     const enrollments = user.enrollments || [];
 
     console.log('📚 Cours de l\'utilisateur:', enrollments);
-
-    // À implémenter selon votre structure de cours
+    viewMyLearning();
 }
 
 // ===== FONCTIONS SUPPLÉMENTAIRES =====
