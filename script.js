@@ -12,6 +12,7 @@ const denyNotificationsBtn = document.getElementById('deny-notifications');
 // Variables globales
 let notificationsEnabled = false;
 let lastUpdateCheck = localStorage.getItem('lastUpdateCheck') || Date.now();
+let favoritesFilterActive = false;
 
 // Initialisation de l'application
 document.addEventListener('DOMContentLoaded', function() {
@@ -30,6 +31,8 @@ function initializeApp() {
     initializeModals();
     initializePerformanceMonitoring();
     initializeUserStorage(); // Initialiser stockage utilisateurs
+    initializeUserSession();
+    initializeCourseSearch();
     
     // Vérifier si un utilisateur est déjà connecté et afficher la notification
     if (isUserLoggedIn()) {
@@ -45,6 +48,155 @@ function setCurrentYear() {
         currentYearSpan.textContent = new Date().getFullYear();
     }
 }
+
+function initializeUserSession() {
+    if (isUserLoggedIn()) {
+        const currentUser = getCurrentUser();
+        if (currentUser) {
+            updateNavbarWithUser(currentUser);
+        }
+    }
+}
+
+function initializeCourseSearch() {
+    const searchInput = document.getElementById('courseSearchInput');
+    const favoriteToggleBtn = document.getElementById('favoriteToggleBtn');
+    if (!searchInput) return;
+
+    searchInput.addEventListener('input', () => {
+        favoritesFilterActive = false;
+        updateFavoriteToggleButton();
+        filterCourses();
+    });
+
+    if (favoriteToggleBtn) {
+        favoriteToggleBtn.addEventListener('click', () => {
+            favoritesFilterActive = !favoritesFilterActive;
+            updateFavoriteToggleButton();
+            filterCourses();
+        });
+    }
+
+    document.querySelectorAll('#coursesTabs button[data-bs-toggle="tab"]').forEach(button => {
+        button.addEventListener('shown.bs.tab', filterCourses);
+    });
+
+    attachFavoriteButtons();
+    updateFavoriteSummary();
+    filterCourses();
+}
+
+function filterCourses() {
+    const query = document.getElementById('courseSearchInput')?.value.trim().toLowerCase() || '';
+    const activeTab = document.querySelector('.tab-pane.show.active') || document.querySelector('.tab-pane.active') || document.querySelector('.tab-pane');
+    let visibleCount = 0;
+
+    document.querySelectorAll('.tab-pane').forEach(tabPane => {
+        tabPane.querySelectorAll('.course-card, .workshop-card').forEach(card => {
+            const title = card.querySelector('h5')?.textContent.toLowerCase() || '';
+            const details = card.textContent.toLowerCase();
+            const favoriteName = card.dataset.courseName || title;
+            const matchesQuery = query === '' || title.includes(query) || details.includes(query);
+            const matchesFavorite = !favoritesFilterActive || isCourseFavorite(favoriteName);
+            const showCard = matchesQuery && matchesFavorite;
+            const wrapper = card.closest('.col-lg-4, .col-lg-6, .col-md-6');
+            if (wrapper) {
+                wrapper.style.display = showCard ? '' : 'none';
+            }
+        });
+    });
+
+    if (activeTab) {
+        activeTab.querySelectorAll('.course-card, .workshop-card').forEach(card => {
+            const wrapper = card.closest('.col-lg-4, .col-lg-6, .col-md-6');
+            if (wrapper && wrapper.style.display !== 'none') {
+                visibleCount += 1;
+            }
+        });
+    }
+
+    const noResults = document.getElementById('courseSearchNoResults');
+    if (noResults) {
+        noResults.classList.toggle('d-none', visibleCount > 0);
+    }
+}
+
+function updateFavoriteToggleButton() {
+    const button = document.getElementById('favoriteToggleBtn');
+    if (!button) return;
+    button.classList.toggle('active', favoritesFilterActive);
+    button.innerHTML = favoritesFilterActive
+        ? '<i class="fas fa-heart me-1"></i>Montrer tous'
+        : '<i class="fas fa-heart me-1"></i>Voir Favoris';
+}
+
+function attachFavoriteButtons() {
+    document.querySelectorAll('.course-card, .workshop-card').forEach(card => {
+        if (card.querySelector('.favorite-button')) return;
+
+        const title = card.querySelector('h5')?.textContent.trim() || 'cours inconnu';
+        card.dataset.courseName = title;
+
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'favorite-button';
+        button.title = 'Ajouter aux favoris';
+        button.innerHTML = '<i class="fas fa-heart"></i>';
+        button.addEventListener('click', (e) => {
+            e.stopPropagation();
+            toggleCourseFavorite(title, button);
+        });
+
+        card.appendChild(button);
+        updateFavoriteButton(card, title);
+    });
+}
+
+function toggleCourseFavorite(courseName, button) {
+    const favorites = getFavoriteCourses();
+    const existingIndex = favorites.indexOf(courseName);
+    if (existingIndex >= 0) {
+        favorites.splice(existingIndex, 1);
+    } else {
+        favorites.push(courseName);
+    }
+    localStorage.setItem('favoriteCourses', JSON.stringify(favorites));
+    updateFavoriteSummary();
+    updateFavoriteButtonState();
+    filterCourses();
+}
+
+function getFavoriteCourses() {
+    try {
+        const stored = JSON.parse(localStorage.getItem('favoriteCourses') || '[]');
+        return Array.isArray(stored) ? stored : [];
+    } catch {
+        return [];
+    }
+}
+
+function isCourseFavorite(courseName) {
+    return getFavoriteCourses().includes(courseName);
+}
+
+function updateFavoriteSummary() {
+    const countSpan = document.getElementById('favoriteCount');
+    if (countSpan) {
+        countSpan.textContent = getFavoriteCourses().length;
+    }
+}
+
+function updateFavoriteButtonState() {
+    document.querySelectorAll('.course-card, .workshop-card').forEach(card => {
+        const title = card.dataset.courseName || card.querySelector('h5')?.textContent.trim() || '';
+        const button = card.querySelector('.favorite-button');
+        if (button) {
+            button.classList.toggle('active', isCourseFavorite(title));
+            button.title = isCourseFavorite(title) ? 'Supprimer des favoris' : 'Ajouter aux favoris';
+        }
+    });
+}
+
 
 // GESTION DU THÈME
 function initializeTheme() {
